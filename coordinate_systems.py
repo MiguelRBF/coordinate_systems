@@ -49,6 +49,10 @@ e22_wgs84 = f_wgs84*(2-f_wgs84)/(1-f_wgs84)**2
 
 # ---  ---
 
+## --- Reference Frames in GNSS: Navipedia ---
+# Web4: https://gssc.esa.int/navipedia/index.php/Reference_Frames_in_GNSS
+# ---  ---
+
 ####  ####
 
 #### FUNCTIONS DEFINITION ####
