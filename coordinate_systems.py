@@ -23,10 +23,14 @@ import numpy as np
 
 #### VARIABLE DEFINITION ####
 
-# --- WGS84 Elipsoidal model: World Geodetic System 1984 ---
+## --- World Geodetic System webs ---
 # Web0: http://wiki.gis.com/wiki/index.php/Geodetic_system
 # Web1: https://en.wikipedia.org/wiki/Geodetic_datum
-# web2: http://www.jpz.se/Html_filer/wgs_84.html
+# ---  ---
+
+# --- WGS84 Elipsoidal model: World Geodetic System 1984 ---
+# Web2: http://www.jpz.se/Html_filer/wgs_84.html
+# Web3: https://en.wikipedia.org/wiki/Latitude#Ellipsoidal-harmonic_coordinates
 
 # Semi-major axis [m]
 a_wgs84 = 6378137.0
