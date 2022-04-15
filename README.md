@@ -4,9 +4,7 @@
 # **coordinate_systems**
 This module was created to manage the change between coordinate systems
 
-The main module nowadays is coordinate_systems.py
-
-## **coordinate_systems.py**
+## **COORDINATE_SYSTEMS**
 
 The following index will show the information/scripts inside the repository:
 

@@ -14,3 +14,4 @@
 - Web5: http://dirsig.cis.rit.edu/docs/new/coordinates.html
 - Web6: https://www.differencebetween.com/difference-between-altitude-and-vs-height/
 - Web7: https://github.com/geospace-code/pymap3d
+- Web8: https://geospace-code.github.io/pymap3d/
