@@ -7,6 +7,14 @@
 4. [**Webs of interest**](./4_links_to_web_of_interest.md): Link to 4_links_to_web_of_interest. Some links to webs of interest.
 <br/><br/>
 
-- documents/Capitulo_5_conversion_de_coordenadas.pdf
-- documents/Transforming Cartesian Coordinates to Geographical coordinates.pdf
-- documents/TRF_Altamimi.pdf
+```
+COORDINATE_SYSTEMS
+|
+|-documents
+|   |
+|   |-pdf
+|   |   |
+|   |   |-Capitulo_5_conversion_de_coordenadas.pdf
+|   |   |-Transforming Cartesian Coordinates to Geographical coordinates.pdf
+|   |   |-TRF_Altamimi.pdf
+```

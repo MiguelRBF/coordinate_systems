@@ -1,4 +1,4 @@
-<img src="./documents/3D_Spherical.png" width="600">
+<img src="./documents/images/3D_Spherical.png" width="600">
 <br/><br/>
 
 # **coordinate_systems**

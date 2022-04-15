@@ -12,3 +12,4 @@
 - Web3: https://en.wikipedia.org/wiki/Latitude#Ellipsoidal-harmonic_coordinates
 - Web4: https://programmerclick.com/article/8091830266/
 - Web5: http://dirsig.cis.rit.edu/docs/new/coordinates.html
+- Web6: https://www.differencebetween.com/difference-between-altitude-and-vs-height/

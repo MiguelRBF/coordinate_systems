@@ -10,7 +10,7 @@
 ## **1.1 World Geodetic System: A geodetic datum or geodetic system**
 
 <p align="center">
-    <img src="./geodetic_system.png" width="400">
+    <img src="./images/geodetic_system.png" width="400">
 </p>
 <br/>
 
@@ -28,8 +28,8 @@ The shape of an ellipsoid of revolution is determined by the shape of the ellips
 - **b = a·(1-f) = a·sqrt(1-e^2)**
 
 <p align="center">
-    <img src="./ellipsoid_parametric_euler_mono.png" width="300">
-    <img src="./latitude_and_longitude_graticule_on_an_ellipsoid.png" width="300">
+    <img src="./images/ellipsoid_parametric_euler_mono.png" width="300">
+    <img src="./images/latitude_and_longitude_graticule_on_an_ellipsoid.png" width="300">
 </p>
 <br/><br/>
 
@@ -38,7 +38,7 @@ The definition of geodetic **latitude (phi)** and **longitude (lambda)** on an e
 
 ## **1.3 The Geodetic (Lat/Long) Coordinate System**
 <p align="center">
-    <img src="./geodetic_coordinates.png" width="400">
+    <img src="./images/geodetic_coordinates.png" width="400">
 </p>
 <br/>
 The "geodetic" coordinate system is known to most as the "Latitude and Longitude" coordinate system. The geodetic grid for the planet is comprised of parallel East/West lines of latitude and North/South lines of longitude that intersect at the poles. Latitude and longitude lines are labeled by the angle they subtend with respect to a reference. For latitude, that 0 reference is the Equator and for longitude that 0 reference is the Prime Meridian.
@@ -53,7 +53,7 @@ In geodetic coordinates the Earth's surface is approximated by an ellipsoid and 
 The global positioning system (GPS) uses the world geodetic system 1984 (WGS84) to determine the location of a point near the surface of the Earth.
 
 <p align="center">
-    <img src="./WGS84_ellipsoid.png">
+    <img src="./images/WGS84_ellipsoid.png">
 </p>
 <br/>
 
@@ -72,11 +72,12 @@ The global positioning system (GPS) uses the world geodetic system 1984 (WGS84) 
 |Semi-minor axis             | b         |a·(1-f)           |6356752.3142 m     |
 |First eccentricity squared  | e^2       |(2-f)·f           |6.69437999014·10^-3|
 |Second eccentricity squared | e'^2      |f·(2-f)/(1-f)^2   |6.73949674228·10^-3|
+|Third flattening            | e'^2      |(a-b)/(a+b)       |6.73949674228·10^-3|
 
 ## **1.4 Earth-Centered, Earth-Fixed (ECEF) Coordinate System**
 
 <p align="center">
-    <img src="./ecef_enu_coordinate_systems.png">
+    <img src="./images/ecef_enu_coordinate_systems.png">
 </p>
 <br/>
 
@@ -87,7 +88,7 @@ Since the entire ECEF reference frame rotates with the earth, this coordinate sy
 ## **1.5 The Scene East-North-Up (Scene ENU) coordinate system**
 
 <p align="center">
-    <img src="./ecef_enu_coordinate_systems.png">
+    <img src="./images/ecef_enu_coordinate_systems.png">
 </p>
 <br/>
 
@@ -100,12 +101,12 @@ Because the scene coordinate system assumes a flat earth, it is not a good coord
 ## **1.6 The Universal Transverse Mercator (UTM) Coordinate System**
 
 <p align="center">
-    <img src="./Malla-Universal-Transversa-Mercator-UTM.jpg">
+    <img src="./images/Malla-Universal-Transversa-Mercator-UTM.jpg">
 </p>
 <br/>
 
 <p align="center">
-    <img src="./Utm-zones.jpg">
+    <img src="./images/Utm-zones.jpg">
 </p>
 <br/>
 
