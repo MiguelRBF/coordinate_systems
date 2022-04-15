@@ -1,4 +1,4 @@
-# --- Origin LLH coordinate system ---
+# --- Involving ECI coordinate system ---
 #--------------------------------------------
 # Module name:      eci.py
 # Created by:       geospace-code/MiguelRBF
@@ -32,7 +32,7 @@ except ImportError:
 ####  ####
 
 #### IMPORT MODULES ####
-from .ellipsoid import Ellipsoid
+from .sidereal import greenwichsrt, juliandate
 
 ####  ####
 

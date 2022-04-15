@@ -32,10 +32,33 @@ COORDINATE_SYSTEMS
 |   |   |-WGS84_ellipsoid.png
 |   |
 |   |-pdf
-|   |   |
-|   |   |-Capitulo_5_conversion_de_coordenadas.pdf
-|   |   |-Transforming Cartesian Coordinates to Geographical coordinates.pdf
-|   |   |-TRF_Altamimi.pdf
+|       |
+|       |-Capitulo_5_conversion_de_coordenadas.pdf
+|       |-Transforming Cartesian Coordinates to Geographical coordinates.pdf
+|       |-TRF_Altamimi.pdf
+|
+|- scripts
+|   |
+|   |-¿coordinate_systems_example.py?
+|   |-¿How can I import the modules placing the file here?
+|
+|- src
+|   |
+|   |-coolpymap3D
+|       |
+|       |-ecef.py
+|       |-eci.py
+|       |-ellipsoid.py
+|       |-enu.py
+|       |-lla.py
+|       |-sidereal.py
+|       |-timeconv.py
+|       |-utils.py
+|
+|-coordinate_systems_example.py
+|-LICENSE
+|-README.md
+
 ```
 
 
