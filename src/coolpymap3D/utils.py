@@ -4,15 +4,18 @@
 # Created by:       geospace-code/MiguelRBF
 #--------------------------------------------
 
-"""Utility functions
+"""Some utility functions. All assume radians."""
 
-all assume radians"""
-
+#### IMPORT STANDARD LIBRARIES ####
 from __future__ import annotations
 from math import pi
+####  ####
 
+#### IMPORT MODULES ####
 from .ellipsoid import Ellipsoid
+####  ####
 
+#### IMPORT DOWNLOADED LIBRARIES ####
 try:
     from numpy import hypot, cos, sin, arctan2 as atan2, radians, asarray, sign
 except ImportError:
@@ -28,10 +31,11 @@ except ImportError:
             y = 0.0
 
         return y
-
+####  ####
 
 __all__ = ["cart2pol", "pol2cart", "cart2sph", "sph2cart", "sign"]
 
+#### FUNCTIONS DEFINITION ####
 
 def cart2pol(x, y) -> tuple:
     """Transform Cartesian to polar coordinates"""
@@ -82,3 +86,7 @@ def sanitize(lat, ell: Ellipsoid | None, deg: bool) -> tuple:
             raise ValueError("-pi/2 <= latitude <= pi/2")
 
     return lat, ell
+
+####  ####
+
+# End of document: utils.py

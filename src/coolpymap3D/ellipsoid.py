@@ -4,8 +4,8 @@
 # Created by:       geospace-code/MiguelRBF
 #--------------------------------------------
 '''
-This module was created to transforms from LLH 
-(Latitude Longitude Height) frame to others.
+This module was created to define the required 
+ellipsoid for the LLA reference frames.
 '''
 
 #### IMPORT STANDARD LIBRARIES ####
@@ -19,10 +19,6 @@ from math import sqrt
 ####  ####
 
 #### IMPORT MODULES ####
-
-####  ####
-
-#### VARIABLE DEFINITION ####
 
 ####  ####
 
@@ -116,3 +112,5 @@ class Ellipsoid:
         self.fppp = (self.a - self.b) / (self.a + self.b)
 
 ####  ####
+
+# End of document: ellipsoid.py

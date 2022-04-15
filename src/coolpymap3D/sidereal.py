@@ -137,3 +137,5 @@ def greenwichsrt(Jdate: float) -> float:
     return gmst_sec * tau / 86400.0 % tau
 
 ####  ####
+
+# End of document: sidereal.py

@@ -78,3 +78,5 @@ def str2dt(time: datetime) -> datetime:
         return time.values.astype("datetime64[us]").astype(datetime)
 
 ####  ####
+
+# End of document: timeconv.py
