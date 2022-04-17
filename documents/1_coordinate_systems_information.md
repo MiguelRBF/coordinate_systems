@@ -14,7 +14,7 @@
 </p>
 <br/>
 
-A geodetic datum or geodetic system (also: geodetic reference datum, geodeticreference system, or geodetic reference frame) is a global datum reference orreference frame for precisely representing the position of locations on Earth orother planetary bodies by means of geodetic coordinates. Datums are crucial to anytechnology or technique based on spatial location, including geodesy, navigation,surveying, geographic information systems, remote sensing, and cartography. Ahorizontal datum is used to measure a location across the Earth's surface, inlatitude and longitude or another coordinate system; a vertical datum is used tomeasure the elevation or depth relative to a standard origin, such as mean sealevel (MSL). Since the rise of the global positioning system (GPS), the ellipsoidand datum WGS 84 it uses has supplanted most others in many applications. The WGS84 is intended for global use, unlike most earlier datums.
+A geodetic datum or geodetic system (also: geodetic reference datum, geodetic reference system, or geodetic reference frame) is a global datum reference or reference frame for precisely representing the position of locations on Earth or other planetary bodies by means of geodetic coordinates. Datums are crucial to any technology or technique based on spatial location, including geodesy, navigation, surveying, geographic information systems, remote sensing, and cartography. A horizontal datum is used to measure a location across the Earth's surface, in latitude and longitude or another coordinate system; a vertical datum is used to measure the elevation or depth relative to a standard origin, such as mean sealevel (MSL). Since the rise of the global positioning system (GPS), the ellipsoidand datum WGS84 it uses has supplanted most others in many applications. The WGS84 is intended for global use, unlike most earlier datums.
 <br/><br/>
 
 ## **1.2 The geometry of the ellipsoid**
@@ -27,37 +27,63 @@ The shape of an ellipsoid of revolution is determined by the shape of the ellips
 
 - **b = a·(1-f) = a·sqrt(1-e^2)**
 
+<br/>
 <p align="center">
-    <img src="./images/ellipsoid_parametric_euler_mono.png" width="300">
-    <img src="./images/latitude_and_longitude_graticule_on_an_ellipsoid.png" width="300">
+    <img src="./images/ellipsoid_parametric_euler_mono.png">
 </p>
 <br/><br/>
 
-The definition of geodetic **latitude (phi)** and **longitude (lambda)** on an ellipsoid. The normal to the surface does not pass through the centre, except at the equator and at the poles.
+
+## **1.3 Geodetic VS Geocentric Coordinate System**
+
+Both coordinate systems share the **longitude** definition, but they differ in the definition of **latitude**.
+
+<br/>
+<p align="center">
+    <img src="./images/latitude_and_longitude_graticule_on_an_ellipsoid.png">
+</p>
+<br/>
+
+The graticule on the ellipsoid is constructed in exactly the same way as on the sphere. The normal at a point on the surface of an ellipsoid does not pass through the centre, except for points on the equator or at the poles, but the definition of latitude remains unchanged as the angle between the normal and the equatorial plane. The terminology for latitude must be made more precise by distinguishing:
+
+- **Geodetic latitude**: the angle between the normal and the equatorial plane. The standard notation in English publications is $\phi$. This is the definition assumed when the word latitude is used without qualification. The definition must be accompanied with a specification of the ellipsoid.
+- **Geocentric latitude** (also known as spherical latitude, after the 3D polar angle): the angle between the radius (from centre to the point on the surface) and the equatorial plane. (Figure below). There is no standard notation, examples from various texts include: $\theta$, $\psi$, q, $\phi'$, $\phi_{c}$, $\phi_{g}$. This article uses $\theta$.
+
+<br/>
+<p align="center">
+    <img src="./images/geodetic_vs_geocentric_latitude.png">
+</p>
+
+The definition of **geodetic** **latitude (phi)** and **longitude (lambda)** on an ellipsoid. The normal to the surface does not pass through the centre, except at the equator and at the poles.
+
+**Geographic latitude** must be used with care, as some authors use it as a synonym for geodetic latitude whilst others use it as an alternative to the astronomical latitude. **Latitude** (unqualified) should normally refer to the **geodetic latitude**.
 <br/><br/>
 
-## **1.3 The Geodetic (Lat/Long) Coordinate System**
+## **1.4 The Geodetic (Lat/Long) Coordinate System**
+
+<br/>
 <p align="center">
     <img src="./images/geodetic_coordinates.png" width="400">
 </p>
 <br/>
-The "geodetic" coordinate system is known to most as the "Latitude and Longitude" coordinate system. The geodetic grid for the planet is comprised of parallel East/West lines of latitude and North/South lines of longitude that intersect at the poles. Latitude and longitude lines are labeled by the angle they subtend with respect to a reference. For latitude, that 0 reference is the Equator and for longitude that 0 reference is the Prime Meridian.
+
+The **geodetic** coordinate system is known to most as the **Latitude** and **Longitude** coordinate system. The geodetic grid for the planet is comprised of parallel East/West lines of latitude and North/South lines of longitude that intersect at the poles. Latitude and longitude lines are labeled by the angle they subtend with respect to a reference. For latitude, that 0 reference is the Equator and for longitude that 0 reference is the Prime Meridian.
 
 Since the longitude lines are not parallel, the horizontal distance for a degree of longitude depends on your location. Therefore, the geodetic location does not have intuitive understanding of distance that other coordinate systems have. However, the geodetic coordinate system is globally consistent and therefore is a good coordinate system for positioning high altitude and space-based platforms.
 
 In geodetic coordinates the Earth's surface is approximated by an ellipsoid and locations near the surface are described in terms of latitude, longitude  and height. The ellipsoid is completely parameterised by the semi-major axis **a** and the flattening **f**.
-<br/><br/>
 
-### **1.3.1 WGS84 Elipsoidal model: World Geodetic System 1984**
+### **1.4.1 WGS84 Elipsoidal model: World Geodetic System 1984**
 
 The global positioning system (GPS) uses the world geodetic system 1984 (WGS84) to determine the location of a point near the surface of the Earth.
 
+<br/>
 <p align="center">
     <img src="./images/WGS84_ellipsoid.png">
 </p>
 <br/>
 
-#### **1.3.1.1 WGS 84 defining parameters**
+#### **1.4.1.1 WGS 84 defining parameters**
 
 | Constant                  | Notation  | Value        |
 |:--------------------------|:---------:|:------------:|
@@ -65,7 +91,7 @@ The global positioning system (GPS) uses the world geodetic system 1984 (WGS84) 
 |Reciprocal of flattening   | 1/f       |298.257223563 |
 <br/>
 
- #### **1.3.1.2 WGS 84 derived geometric constants**
+ #### **1.4.1.2 WGS 84 derived geometric constants**
 
 | Constant                   | Notation  | Value            | Aproximation      |
 |:---------------------------|:----------|:----------------:|:-----------------:|
@@ -73,9 +99,11 @@ The global positioning system (GPS) uses the world geodetic system 1984 (WGS84) 
 |First eccentricity squared  | e^2       |(2-f)·f           |6.69437999014·10^-3|
 |Second eccentricity squared | e'^2      |f·(2-f)/(1-f)^2   |6.73949674228·10^-3|
 |Third flattening            | e'^2      |(a-b)/(a+b)       |6.73949674228·10^-3|
+<br/><br/>
 
-## **1.4 Earth-Centered, Earth-Fixed (ECEF) Coordinate System**
+## **1.5 Earth-Centered, Earth-Fixed (ECEF) Coordinate System**
 
+<br/>
 <p align="center">
     <img src="./images/ecef_enu_coordinate_systems.png">
 </p>
@@ -85,8 +113,11 @@ The Earth-Centered, Earth-Fixed (ECEF) coordinate system is also known as the "c
 
 Since the entire ECEF reference frame rotates with the earth, this coordinate system is useful for positioning geo-stationary objects such as satellites. In fact, the Global Positioning System (GPS) uses ECEF as it’s primary coordinate system and derives all other coordinates from it. However, since ECEF has an origin that is very far from most locations on the surface of the earth, it would be awkward for a small scene with a platform located at a small distance away because all the coordinates will be biased by the large offset to the center of the earth.
 
-## **1.5 The Scene East-North-Up (Scene ENU) coordinate system**
+<br/><br/>
 
+## **1.6 The Scene East-North-Up (Scene ENU) coordinate system**
+
+<br/>
 <p align="center">
     <img src="./images/ecef_enu_coordinate_systems.png">
 </p>
@@ -98,8 +129,11 @@ Although the coordinate system is itself arbitrary, the "scene" coordinate syste
 
 Because the scene coordinate system assumes a flat earth, it is not a good coordinate system to use over large distances. For example, unless your platform is directly overhead, using the scene coordinate system for a high altitude or space-based platform would not be suggested. However, it is a convenient coordinate system for small areas because it allows for the use of Euclidean geometry.
 
-## **1.6 The Universal Transverse Mercator (UTM) Coordinate System**
+<br/><br/>
 
+## **1.7 The Universal Transverse Mercator (UTM) Coordinate System**
+
+<br/>
 <p align="center">
     <img src="./images/Malla-Universal-Transversa-Mercator-UTM.jpg">
 </p>

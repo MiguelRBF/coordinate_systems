@@ -30,6 +30,7 @@ COORDINATE_SYSTEMS
 |   |   |-ellipsoid_parametric_euler_mono.png
 |   |   |-geodetic_coordinates.png
 |   |   |-geodetic_system.png
+|   |   |-geodetic_vs_geocentric_latitude.png
 |   |   |-latitude_and_longitude_graticule_on_an_ellipsoid.png
 |   |   |-Malla-Universal-Transversa-Mercator-UTM.jpg
 |   |   |-Utm-zones.jpg
@@ -43,8 +44,8 @@ COORDINATE_SYSTEMS
 |
 |- scripts
 |   |
-|   |-¿coordinate_systems_example.py?
-|   |-¿Best way to import the modules placing the script file here?
+|   |-coordinate_systems_example.py?
+|   |-Best way to import the modules placing the script file here?
 |
 |- src
     |
