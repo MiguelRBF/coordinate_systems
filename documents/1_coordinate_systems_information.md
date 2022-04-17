@@ -40,7 +40,7 @@ Both coordinate systems share the **longitude** definition, but they differ in t
 
 <br/>
 <p align="center">
-    <img src="./images/latitude_and_longitude_graticule_on_an_ellipsoid.png">
+    <img src="./images/latitude_and_longitude_graticule_on_an_ellipsoid.png" width="400">
 </p>
 <br/>
 
@@ -91,14 +91,13 @@ The global positioning system (GPS) uses the world geodetic system 1984 (WGS84) 
 |Reciprocal of flattening   | 1/f       |298.257223563 |
 <br/>
 
- #### **1.4.1.2 WGS 84 derived geometric constants**
+ #### **1.4.1.2 WGS84 derived geometric constants**
 
 | Constant                   | Notation  | Value            | Aproximation      |
 |:---------------------------|:----------|:----------------:|:-----------------:|
 |Semi-minor axis             | b         |a·(1-f)           |6356752.3142 m     |
 |First eccentricity squared  | e^2       |(2-f)·f           |6.69437999014·10^-3|
 |Second eccentricity squared | e'^2      |f·(2-f)/(1-f)^2   |6.73949674228·10^-3|
-|Third flattening            | e'^2      |(a-b)/(a+b)       |6.73949674228·10^-3|
 <br/><br/>
 
 ## **1.5 Earth-Centered, Earth-Fixed (ECEF) Coordinate System**
