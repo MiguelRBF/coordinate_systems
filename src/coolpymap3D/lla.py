@@ -40,7 +40,7 @@ __all__ = [
 def lla2ecef(
     lat: np.float64,
     long: np.float64,
-    h: np.float64,
+    alt: np.float64,
     ell: Ellipsoid = None,
     deg: bool = True
     ):
@@ -56,12 +56,12 @@ def lla2ecef(
 
     Parameters
     ----------
-    x
-        target x ECEF coordinate (meters)
-    y
-        target y ECEF coordinate (meters)
-    z
-        target z ECEF coordinate (meters)
+    lat
+        target geodetic latitude
+    lon
+        target geodetic longitude
+    alt
+        target altitude above geodetic ellipsoid (meters)
     
     ell : Ellipsoid, optional
           reference ellipsoid
@@ -91,10 +91,10 @@ def lla2ecef(
     # Compute chi parameter
     chi = np.sqrt(1-ell.e2*(np.sin(lat))**2)
 
-    # Comput x, y and z coordinates
-    x = (ell.a/chi +h)*np.cos(lat)*np.cos(long)
-    y = (ell.a/chi +h)*np.cos(lat)*np.sin(long)
-    z = (ell.a*(1-ell.e2)/chi + h)*np.sin(lat)
+    # Compute x, y and z coordinates
+    x = (ell.a/chi +alt)*np.cos(lat)*np.cos(long)
+    y = (ell.a/chi +alt)*np.cos(lat)*np.sin(long)
+    z = (ell.a*(1-ell.e2)/chi + alt)*np.sin(lat)
 
     return x, y, z
 

@@ -40,19 +40,19 @@ def main():
     # Set the precission of the terminal printing of np arrays
     np.set_printoptions(precision=20)
 
-    # Bern and Sydney coordinates (WGS84: latitude, longitude, height)
+    # Bern and Sydney coordinates (WGS84: latitude, longitude, altitude)
     array_lat = np.array([46.9480900, -33.8678500])
     array_long = np.array([7.4474400, 151.2073200])
-    array_h = np.array([549, 58])
+    array_a = np.array([549, 58])
 
-    print(f'Bern and Sydney coordinates (latitude, longitude, height)')
+    print(f'Bern and Sydney coordinates (latitude, longitude, altitude)')
     print(f'array_lat:  {array_lat}')
     print(f'array_long: {array_long}')
-    print(f'array_h:    {array_h}')
+    print(f'array_a:    {array_a}')
     print()
 
     # Get the cordinates in ecef reference system
-    array_x, array_y, array_z = lla2ecef(array_lat, array_long, array_h, ell=ellipsoid_wgs84, deg=True)
+    array_x, array_y, array_z = lla2ecef(array_lat, array_long, array_a, ell=ellipsoid_wgs84, deg=True)
 
     print(f'Get the cordinates in ecef reference system')
     print(f'array_x:    {array_x}')
@@ -108,7 +108,7 @@ def main():
     print(f'Using Bern and Sydney llh position as reference...')
     print()
 
-    array3_x, array3_y, array3_z = enu2ecef_llaRef(array_lat, array_long, array_h, array_E, array_N, array_U, ell=ellipsoid_wgs84, deg=True)
+    array3_x, array3_y, array3_z = enu2ecef_llaRef(array_lat, array_long, array_a, array_E, array_N, array_U, ell=ellipsoid_wgs84, deg=True)
 
     print(f'Get the cordinates in ecef from ENU reference system.')
     print(f'array3_x:    {array3_x}')
@@ -116,7 +116,7 @@ def main():
     print(f'array3_z:    {array3_z}')
     print()
 
-    array3_E, array3_N, array3_U = ecef2enu_llaRef(array_lat, array_long, array_h, array3_x, array3_y, array3_z, ell=ellipsoid_wgs84, deg=True)
+    array3_E, array3_N, array3_U = ecef2enu_llaRef(array_lat, array_long, array_a, array3_x, array3_y, array3_z, ell=ellipsoid_wgs84, deg=True)
 
     print(f'Get the cordinates in ENU from ecef reference system.')
     print(f'array3_E:    {array3_E}')

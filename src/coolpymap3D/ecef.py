@@ -47,7 +47,8 @@ def ecef2llh(
     ell: Ellipsoid = None,
     deg: bool = True
     ):
-    '''This function was created to change between ECEF coordinate system to 
+    '''
+    This function was created to change between ECEF coordinate system to 
     geodetic of specified ellipsoid (default WGS-84) coordinate system 
     (longitude, latitude, height).
 
@@ -96,14 +97,14 @@ def ecef2llh(
     tmp = (r - ell.e2*ro)**2
     U = np.sqrt( tmp + z**2 )
     V = np.sqrt( tmp + (1-ell.e2)*z**2 )
-    zo = (ell.b**2*z)/(ell.a*V)
+    zo = (ell.b**2*z)/(ell.a*V)   
 
     # Now get the final coordinates: longitude, latitude and altitude
     lat = np.arctan((z+ell.ep2*zo)/r)
     long = np.arctan2(y, x)
     alt = U*(1 - ell.b**2/(ell.a*V))
 
-    # If degres is wanted as output
+    # If degrees is wanted as output
     if deg:
         # Convert the units of longitude and latitude from radians to degrees
         lat = lat*180/pi
