@@ -45,7 +45,7 @@ def lla2ecef(
     deg: bool = True
     ):
     '''
-    Convert lat, long, height in geodetic of specified ellipsoid (default WGS-84)
+    Convert lat, long, altitude in geodetic of specified ellipsoid (default WGS-84)
     to ECEF X,Y,Z. Longitude and latitude can be given in decimal degrees or radians 
     (default decimal degrees). Altitude must be given in meters.
 

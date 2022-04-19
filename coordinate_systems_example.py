@@ -19,7 +19,7 @@ import numpy as np
 
 #### IMPORT MODULES ####
 from src.coolpymap3D.ellipsoid import Ellipsoid
-from src.coolpymap3D.ecef import ecef2llh, ecef2enu_ecefRef, ecef2enu_llaRef
+from src.coolpymap3D.ecef import ecef2lla, ecef2enu_ecefRef, ecef2enu_llaRef
 from src.coolpymap3D.lla import lla2ecef
 from src.coolpymap3D.enu import enu2ecef_ecefRef, enu2ecef_llaRef
 
@@ -61,7 +61,7 @@ def main():
     print()
 
     # Get the cordinates into geodetic reference system (WGS84: latitude, longitude, height)
-    array2_lat, array2_long, array2_h = ecef2llh(array_x, array_y, array_z, ell=ellipsoid_wgs84, deg=True)
+    array2_lat, array2_long, array2_h = ecef2lla(array_x, array_y, array_z, ell=ellipsoid_wgs84, deg=True)
 
     print(f'Get the cordinates into geodetic reference system (WGS84: latitude, longitude, height)')
     print(f'array2_lat: {array2_lat}')
@@ -97,7 +97,7 @@ def main():
     print(f'array2_z:    {array2_z}')
     print()
 
-    array2_E, array2_N, array2_U = ecef2enu_ecefRef(array_x, array_y, array_z, array2_x, array2_y, array2_z)
+    array2_E, array2_N, array2_U = ecef2enu_ecefRef(array_x, array_y, array_z, array2_x, array2_y, array2_z, ell=ellipsoid_wgs84)
 
     print(f'Get the cordinates in ENU from ecef reference system.')
     print(f'array2_E:    {array2_E}')
@@ -105,7 +105,7 @@ def main():
     print(f'array2_U:    {array2_U}')
     print()
 
-    print(f'Using Bern and Sydney llh position as reference...')
+    print(f'Using Bern and Sydney lla position as reference...')
     print()
 
     array3_x, array3_y, array3_z = enu2ecef_llaRef(array_lat, array_long, array_a, array_E, array_N, array_U, ell=ellipsoid_wgs84, deg=True)

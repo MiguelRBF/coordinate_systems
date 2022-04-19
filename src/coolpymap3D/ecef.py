@@ -31,7 +31,7 @@ from .lla import lla2ecef
 # and they can expect that it will not change.
 # https://appdividend.com/2021/05/09/what-is-python-__all__-and-how-to-use-it/
 __all__ = [
-    "ecef2llh",
+    "ecef2lla",
     "ecef2enu_ecefRef",
     "ecef2enu_llaRef"
 ]
@@ -40,7 +40,7 @@ __all__ = [
 
 #### FUNCTIONS DEFINITION ####
 
-def ecef2llh(
+def ecef2lla(
     x: np.float64,
     y: np.float64,
     z: np.float64,
@@ -119,11 +119,12 @@ def ecef2enu_ecefRef(
     x: np.float64,
     y: np.float64,
     z: np.float64,
+    ell: Ellipsoid = None
     ):
     '''This function convert ECEF coordinates to local east, north, up coordinates (ENU).
 
     A reference point in ECEF coordinates (x, y, z - refX, refY, refZ)
-    must be given. All distances are in metres.
+    must be given. All distances are in meters.
 
     np arrays can be given as inputs.
 
@@ -144,6 +145,8 @@ def ecef2enu_ecefRef(
         target y ECEF coordinate (meters)
     z
         target z ECEF coordinate (meters)
+    ell : Ellipsoid, optional
+          reference ellipsoid
 
     Returns
     -------
@@ -155,12 +158,12 @@ def ecef2enu_ecefRef(
         target up ENU coordinate (meters)
     '''
 
-    # First find reference location in latitude, longitud and height coordinates
-    refLat, refLong, refH = ecef2llh(refX, refY, refZ)
-
-    # Convert the latitude and longitude into radians
-    refLat = refLat*pi/180
-    refLong = refLong*pi/180
+    # If no ellipsoid is defined define the default ellipsoid (WGS84)
+    if ell is None:
+        ell = Ellipsoid()
+    
+    # First find reference location in latitude, longitud and height coordinates (radians)
+    refLat, refLong, refH = ecef2lla(refX, refY, refZ, ell, False)
 
     # Compute ENU coordinates
     e = -np.sin(refLong)*(x-refX) + np.cos(refLong)*(y-refY)
@@ -183,7 +186,7 @@ def ecef2enu_llaRef(
 
     A reference point in geodetic coordinate system 
     (latitude, longitude, height - refLat, refLong, refH)
-    must be given. All distances are in metres.
+    must be given. All distances are in meters.
     
     np arrays can be given as inputs.
 

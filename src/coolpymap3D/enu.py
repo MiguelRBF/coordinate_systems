@@ -20,7 +20,7 @@ import numpy as np
 
 #### IMPORT MODULES ####
 from .ellipsoid import Ellipsoid
-from .ecef import ecef2llh
+from .ecef import ecef2lla
 from .lla import lla2ecef
 
 ####  ####
@@ -83,7 +83,7 @@ def enu2ecef_ecefRef(
     '''
 
     # First find reference location in ECEF coordinates
-    refLat, refLong, refH = ecef2llh(refX, refY, refZ)
+    refLat, refLong, refH = ecef2lla(refX, refY, refZ)
 
     # Convert the latitude and longitude into radians
     refLat = refLat*pi/180
