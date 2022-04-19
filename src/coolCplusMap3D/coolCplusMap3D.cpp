@@ -45,30 +45,71 @@ class Ellipsoid{	// The class
 		Ellipsoid(string mod){		// Constructor with parameters
 			string model = mod;
 
-
+			// WGS84 defining parameters
 			if (model == "wgs84"){
 				a = 6378137.0;
 				f = 1/298.257223563;
+				// WGS84 derived parameter
 				b = a*(1-f);
 
+			// WGS72 defining parameters
 			}else if (model == "wgs72"){
 
 				a = 6378135.0;
 				b = 6356750.52001609;
-				f = (a - b) / a;
 
-			} else {
+			// GRS80 defining parameters
+			}else if (model == "grs80"){
+
+				a = 6378137.0;
+				b = 6356752.31414036;
+
+			// Mars defining parameters
+			}else if (model == "mars"){
+				// https://tharsis.gsfc.nasa.gov/geodesy.html
+				a = 3396900.0;
+				b = 3376097.80585952;
+
+			// Moon defining parameters
+			}else if (model == "moon"){
+				a = 1738000.0;
+				b = 1738000.0;
+
+			// Venus defining parameters
+			}else if (model == "venus"){
+				a = 6051000.0;
+				b = 6051000.0;
+
+			// Jupiter defining parameters
+			}else if (model == "jupiter"){
+				a = 71492000.0;
+				b = 66770054.3475922;
+
+			// Pluto defining parameters
+			}else if (model == "pluto"){
+				a = 1187000.0;
+				b = 1187000.0;
+			}
+			// If the parameter is not any one of the defined...
+			else {
 				cout << "Invalid model\n";
 				exit(0);
 			}
 
+			// In wgs84 the flattening is a defining parameter. In the other ellipsoids
+			// the semiminor_axis is the second defining parameter.
+			if (model != "wgs84"){
+				f = (a - b) / a;
+			}
+
+			// Create the rest of the ellipsoid derived geometric constants
 			e2 = 2*f - f*f;
 			ep2 = f*(2-f)/pow(1-f,2);
 		}
 
 };
 
-void ecef2llh(long double xyz[], Ellipsoid ell, long double lla[], bool deg){
+void ecef2lla(long double xyz[], Ellipsoid ell, long double lla[], bool deg){
 
 	/*
 	This function was created to change between ECEF coordinate system to
@@ -80,6 +121,7 @@ void ecef2llh(long double xyz[], Ellipsoid ell, long double lla[], bool deg){
 
     Parameters
     ----------
+    xyz={x, y, z}
     x
         target x ECEF coordinate (meters)
     y
@@ -94,6 +136,7 @@ void ecef2llh(long double xyz[], Ellipsoid ell, long double lla[], bool deg){
 
     Returns
     -------
+    lla={lat, lon, alt}
     lat
         target geodetic latitude
     lon
@@ -104,31 +147,29 @@ void ecef2llh(long double xyz[], Ellipsoid ell, long double lla[], bool deg){
 
 	// Define x, y z coordinates
 	long double x=xyz[0], y=xyz[1], z=xyz[2];
-	// Define ellipse parameters
-	long double a=ell.a, b=ell.b, e2=ell.e2, ep2=ell.ep2;
 
 	// Define intermediate parameters
 	long double r2, r, E2, F, G, c, s, P, Q, ro, tmp, U, V, zo;
 
 	r2 = pow(x,2) + pow(y,2);
 	r = sqrt(r2);
-	E2 = pow(a,2) - pow(b,2);
-	F = 54*pow(b,2)*pow(z,2);
-	G = r2 + (1-e2)*pow(z,2) - e2*E2;
-	c=(e2*e2*F*r2)/(G*G*G);
+	E2 = pow(ell.a,2) - pow(ell.b,2);
+	F = 54*pow(ell.b,2)*pow(z,2);
+	G = r2 + (1-ell.e2)*pow(z,2) - ell.e2*E2;
+	c=(ell.e2*ell.e2*F*r2)/(G*G*G);
 	s = pow( 1 + c + sqrt(c*c + 2*c), 1.0/3.0);
 	P = F/(3*pow(s+1.0/s+1, 2)*G*G);
-	Q = sqrt(1+2*e2*e2*P);
-	ro = -(e2*P*r)/(1+Q) + sqrt((a*a/2)*(1+1.0/Q) - ((1-e2)*P*pow(z,2))/(Q*(1+Q)) - P*r2/2);
-	tmp = pow(r - e2*ro, 2);
+	Q = sqrt(1+2*ell.e2*ell.e2*P);
+	ro = -(ell.e2*P*r)/(1+Q) + sqrt((ell.a*ell.a/2)*(1+1.0/Q) - ((1-ell.e2)*P*pow(z,2))/(Q*(1+Q)) - P*r2/2);
+	tmp = pow(r - ell.e2*ro, 2);
 	U = sqrt( tmp + z*z );
-	V = sqrt( tmp + (1-e2)*z*z );
-	zo = (b*b*z)/(a*V);
+	V = sqrt( tmp + (1-ell.e2)*z*z );
+	zo = (ell.b*ell.b*z)/(ell.a*V);
 
 	// Now get the final coordinates: longitude, latitude and altitude
-	lla[0] = atan((z+ep2*zo)/r);
+	lla[0] = atan((z+ell.ep2*zo)/r);
 	lla[1] = atan2(y, x);
-	lla[2] = U*(1 - b*b/(a*V));
+	lla[2] = U*(1 - ell.b*ell.b/(ell.a*V));
 
 	// If degrees is wanted as output
 	if (deg){
@@ -138,10 +179,10 @@ void ecef2llh(long double xyz[], Ellipsoid ell, long double lla[], bool deg){
 	}
 }
 
-void llh2ecef(long double lla[], Ellipsoid ell, long double xyz[], bool deg){
+void lla2ecef(long double lla[], Ellipsoid ell, long double xyz[], bool deg){
 
 	/*
-	Convert lat, long, height in geodetic of specified ellipsoid
+	Convert lat, long, altitude in geodetic of specified ellipsoid
     to ECEF X,Y,Z. Longitude and latitude can be given in decimal
     degrees or radians. Altitude must be given in meters.
 
@@ -150,6 +191,7 @@ void llh2ecef(long double lla[], Ellipsoid ell, long double xyz[], bool deg){
 
     Parameters
     ----------
+    lla={lat, lon, alt}
     lat
         target geodetic latitude
     lon
@@ -164,6 +206,7 @@ void llh2ecef(long double lla[], Ellipsoid ell, long double xyz[], bool deg){
 
     Returns
     -------
+    xyz={x, y, z}
     x
         target x ECEF coordinate (meters)
     y
@@ -174,8 +217,6 @@ void llh2ecef(long double lla[], Ellipsoid ell, long double xyz[], bool deg){
 
 	// Define latitude, longitude altitude coordinates
 	long double lat=lla[0], lon=lla[1], alt=lla[2];
-	// Define ellipse parameters
-	long double a=ell.a, e2=ell.e2;
 
 	// Define intermediate parameters
 	long double chi;
@@ -188,12 +229,138 @@ void llh2ecef(long double lla[], Ellipsoid ell, long double xyz[], bool deg){
 	}
 
 	// Compute chi parameter
-    chi = sqrt(1-e2*pow(sin(lat),2));
+    chi = sqrt(1-ell.e2*pow(sin(lat),2));
 
 	// Compute x, y and z coordinates
-    xyz[0] = (a/chi +alt)*cos(lat)*cos(lon);
-    xyz[1] = (a/chi +alt)*cos(lat)*sin(lon);
-    xyz[2] = (a*(1-ell.e2)/chi + alt)*sin(lat);
+    xyz[0] = (ell.a/chi +alt)*cos(lat)*cos(lon);
+    xyz[1] = (ell.a/chi +alt)*cos(lat)*sin(lon);
+    xyz[2] = (ell.a*(1-ell.e2)/chi + alt)*sin(lat);
+}
+
+void ecef2enu_ecefRef(long double refXYZ[], long double xyz[], Ellipsoid ell, long double enu[]){
+	/*
+	This function convert ECEF coordinates to local east, north, up coordinates (ENU).
+
+    A reference point in ECEF coordinates (x, y, z - refX, refY, refZ)
+    must be given. All distances are in meters.
+
+    Equations taken from:
+    http://wiki.gis.com/wiki/index.php/Geodetic_system
+
+    Parameters
+    ----------
+	refLLA={refLat, refLon, refAlt}
+    refLat
+        reference geodetic latitude
+    refLon
+        reference geodetic longitude
+    refAlt
+        reference altitude above geodetic ellipsoid (meters)
+    xyz={x, y, z}
+    x
+        target x ECEF coordinate (meters)
+    y
+        target y ECEF coordinate (meters)
+    z
+        target z ECEF coordinate (meters)
+
+    ell : Ellipsoid, optional
+          reference ellipsoid
+
+    Returns
+    -------
+    enu={e, n, u}
+    e
+        target east ENU coordinate (meters)
+    n
+        target north ENU coordinate (meters)
+    u
+        target up ENU coordinate (meters)
+	*/
+
+	// Define reference x, y, z
+	long double refX=refXYZ[0], refY=refXYZ[1], refZ=refXYZ[2];
+
+	// Define target x, y, z
+	long double x=xyz[0], y=xyz[1], z=xyz[2];
+
+	// Define intermediate parameters
+	long double refLLA[]={0, 0, 0};
+
+	// First find reference location in latitude, longitude and height coordinates (radians)
+    ecef2lla(refXYZ, ell, refLLA, false);
+
+	// Get reference latitude, longitude altitude coordinates
+	long double refLat=refLLA[0], refLon=refLLA[1], refAlt=refLLA[2];
+
+	//Compute ENU coordinates
+	enu[0] = -sin(refLon)*(x-refX) + cos(refLon)*(y-refY);
+	enu[1] = -sin(refLat)*cos(refLon)*(x-refX) - sin(refLat)*sin(refLon)*(y-refY) + cos(refLat)*(z-refZ);
+	enu[2] = cos(refLat)*cos(refLon)*(x-refX) + cos(refLat)*sin(refLon)*(y-refY) + sin(refLat)*(z-refZ);
+
+}
+
+void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, long double enu[], bool deg){
+	/*
+	This function convert ECEF coordinates to local east, north, up coordinates.
+
+    A reference point in geodetic coordinate system
+    (latitude, longitude, height - refLat, refLong, refH)
+    must be given. All distances are in metres.
+
+    Equations taken from:
+    http://wiki.gis.com/wiki/index.php/Geodetic_system
+
+    Parameters
+    ----------
+    refX
+        reference x ECEF coordinate (meters)
+    refY
+        reference y ECEF coordinate (meters)
+    refZ
+        reference z ECEF coordinate (meters)
+    x
+        target x ECEF coordinate (meters)
+    y
+        target y ECEF coordinate (meters)
+    z
+        target z ECEF coordinate (meters)
+
+    ell : Ellipsoid
+          reference ellipsoid
+    deg : bool, optional
+          degrees input/output  (False: radians in/out)
+
+    Returns
+    -------
+    e
+        target east ENU coordinate (meters)
+    n
+        target north ENU coordinate (meters)
+    u
+        target up ENU coordinate (meters)
+	*/
+
+	// Define reference latitude, longitude altitude coordinates
+	long double refLat=refLLA[0], refLon=refLLA[1], refAlt=refLLA[2];
+
+	// Define target x, y, z
+	long double x=xyz[0], y=xyz[1], z=xyz[2];
+
+	// Define intermediate parameters
+	long double refXYZ[]={0,0,0};
+
+	// First find reference location ecef coordinates (x, y, z)
+    lla2ecef(refLLA, ell, refXYZ, false)
+
+	// Get reference ecef coordinates
+	long double refX=refXYZ[0], refY=refXYZ[1], refZ=refXYZ[2];
+
+	//Compute ENU coordinates
+	enu[0] = -sin(refLon)*(x-refX) + cos(refLon)*(y-refY);
+	enu[1] = -sin(refLat)*cos(refLon)*(x-refX) - sin(refLat)*sin(refLon)*(y-refY) + cos(refLat)*(z-refZ);
+	enu[2] = cos(refLat)*cos(refLon)*(x-refX) + cos(refLat)*sin(refLon)*(y-refY) + sin(refLat)*(z-refZ);
+
 }
 
 int main(){
@@ -211,7 +378,7 @@ int main(){
 	bool degrees = true;
 
 	// Get the latitude, longitude and altitude coordinates
-	ecef2llh(xyz, ell_wgs84, lla, degrees);
+	ecef2lla(xyz, ell_wgs84, lla, degrees);
 
 	// Print output
 	cout << "lla = [ ";
@@ -222,7 +389,7 @@ int main(){
 	cout << "]" << endl;
 
 	// Get the x, y z coordinates
-	llh2ecef(lla, ell_wgs84, xyz, degrees);
+	lla2ecef(lla, ell_wgs84, xyz, degrees);
 
 	// Print output
 		cout << "xyz = [ ";
