@@ -50,15 +50,20 @@ COORDINATE_SYSTEMS
 |- src
     |
     |-coolpymap3D
+    |   |
+    |   |-ecef.py
+    |   |-eci.py
+    |   |-ellipsoid.py
+    |   |-enu.py
+    |   |-lla.py
+    |   |-sidereal.py
+    |   |-timeconv.py
+    |   |-utils.py
+    |
+    |-coolCplusMap3D
         |
-        |-ecef.py
-        |-eci.py
-        |-ellipsoid.py
-        |-enu.py
-        |-lla.py
-        |-sidereal.py
-        |-timeconv.py
-        |-utils.py
+        |-coolCplusMap3D.cpp
+
 ```
 ## **2.1 files inside COORDINATE_SYSTEMS**
 
@@ -111,7 +116,7 @@ Further information about this folder at the following link:
 Now empty.
 
 ## **2.4 src/coolpymap3D**
-Inside this folder you will find the modules used to do reference frames conversions.
+Inside this folder you will find the modules used to do reference frames conversions. Python code.
 
 ```
 COORDINATE_SYSTEMS
@@ -153,3 +158,8 @@ This module was created to convert strings to datetime.
 
 ### **2.4.8 utils.py**
 Some utility functions. All assume radians.
+
+## **2.5 src/coolCplusMap3D**
+Inside this folder you will find the modules used to do reference frames conversions. C++ code.
+
+In development.
