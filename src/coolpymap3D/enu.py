@@ -47,10 +47,11 @@ def enu2ecef_ecefRef(
     e: np.float64,
     n: np.float64,
     u: np.float64):
-    '''This function convert local east, north, up coordinates (labeled e, n, u) to ECEF coordinates.
+    '''
+    This function convert local east, north, up coordinates (labeled e, n, u) to ECEF coordinates.
 
     A reference point in ECEF coordinates (x, y, z - refX, refY, refZ)
-    must be given. All distances are in metres.
+    must be given. All distances are in meters.
 
     np arrays can be given as inputs.
 
@@ -82,8 +83,8 @@ def enu2ecef_ecefRef(
         target z ECEF coordinate (meters)
     '''
 
-    # First find reference location in ECEF coordinates
-    refLat, refLong, refH = ecef2lla(refX, refY, refZ)
+    # First find reference location in LLA coordinates
+    refLat, refLong, _ = ecef2lla(refX, refY, refZ)
 
     # Convert the latitude and longitude into radians
     refLat = refLat*pi/180
@@ -106,13 +107,14 @@ def enu2ecef_llaRef(
     ell: Ellipsoid = None,
     deg: bool = True
     ):
-    '''This function convert local east, north, up coordinates (labeled e, n, u)
+    '''
+    This function convert local east, north, up coordinates (labeled e, n, u)
     to ECEF coordinates.
 
     A reference point in geodetic coordinate system
     (latitude, longitude, height - refLat, refLong, refH)
     must be given. Longitude and latitude can be given in decimal degrees
-    or radians (default decimal degrees). All distances are in metres.
+    or radians (default decimal degrees). All distances are in meters.
 
     np arrays can be given as inputs.
 

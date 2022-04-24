@@ -162,7 +162,7 @@ def ecef2enu_ecefRef(
     if ell is None:
         ell = Ellipsoid()
     
-    # First find reference location in latitude, longitud and height coordinates (radians)
+    # First find reference location in LLA coordinates (radians)
     refLat, refLong, refH = ecef2lla(refX, refY, refZ, ell, False)
 
     # Compute ENU coordinates

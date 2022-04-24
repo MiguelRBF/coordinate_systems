@@ -18,10 +18,10 @@ import numpy as np
 ####  ####
 
 #### IMPORT MODULES ####
-from src.coolpymap3D.ellipsoid import Ellipsoid
-from src.coolpymap3D.ecef import ecef2lla, ecef2enu_ecefRef, ecef2enu_llaRef
-from src.coolpymap3D.lla import lla2ecef
-from src.coolpymap3D.enu import enu2ecef_ecefRef, enu2ecef_llaRef
+from src.coolPyMap3D.ellipsoid import Ellipsoid
+from src.coolPyMap3D.ecef import ecef2lla, ecef2enu_ecefRef, ecef2enu_llaRef
+from src.coolPyMap3D.lla import lla2ecef
+from src.coolPyMap3D.enu import enu2ecef_ecefRef, enu2ecef_llaRef
 
 ####  ####
 

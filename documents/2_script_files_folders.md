@@ -44,8 +44,7 @@ COORDINATE_SYSTEMS
 |
 |- scripts
 |   |
-|   |-coordinate_systems_example.py?
-|   |-Best way to import the modules placing the script file here?
+|   |-
 |
 |- src
     |
@@ -60,9 +59,16 @@ COORDINATE_SYSTEMS
     |   |-timeconv.py
     |   |-utils.py
     |
-    |-coolCplusMap3D
+    |-coolCppMap3D
         |
-        |-coolCplusMap3D.cpp
+        |-ecef.h
+        |-ecef.cpp
+        |-ellipsoid.h
+        |-ellipsoid.cpp
+        |-enu.h
+        |-enu.cpp
+        |-lla.h
+        |-lla.cpp
 
 ```
 ## **2.1 files inside COORDINATE_SYSTEMS**
@@ -123,7 +129,7 @@ COORDINATE_SYSTEMS
 |
 |- src
     |
-    |-coolpymap3D
+    |-coolPyMap3D
         |
         |-ecef.py
         |-eci.py
@@ -159,7 +165,24 @@ This module was created to convert strings to datetime.
 ### **2.4.8 utils.py**
 Some utility functions. All assume radians.
 
-## **2.5 src/coolCplusMap3D**
+## **2.5 src/coolCppMap3D**
 Inside this folder you will find the modules used to do reference frames conversions. C++ code.
 
-In development.
+```
+COORDINATE_SYSTEMS
+|
+|- src
+    |
+    |-coolCppMap3D
+        |
+        |-ecef.h
+        |-ecef.cpp
+        |-ellipsoid.h
+        |-ellipsoid.cpp
+        |-enu.h
+        |-enu.cpp
+        |-lla.h
+        |-lla.cpp
+        |
+        |-coordinate_systems_cpp_example.cpp
+```
