@@ -84,9 +84,9 @@ def enu2ecef_ecefRef(
     '''
 
     # First find reference location in LLA coordinates
-    refLat, refLong, _ = ecef2lla(refX, refY, refZ)
+    refLat, refLong, refH = ecef2lla(refX, refY, refZ)
 
-    # Convert the latitude and longitude into radians
+    # Convert the reference latitude and longitude into radians
     refLat = refLat*pi/180
     refLong = refLong*pi/180
 
@@ -153,10 +153,21 @@ def enu2ecef_llaRef(
     # First find reference location in ECEF coordinates
     refX, refY, refZ = lla2ecef(refLat, refLong, refH, ell, deg)
 
-    # Compute ecef coordinates
+    # If the reference coordinates are given in degrees
+    if deg:
+        # Convert the reference latitude and longitude into radians
+        refLat = refLat*pi/180
+        refLong = refLong*pi/180
+
+    # Compute ecef coordinates (original)
     x = -np.sin(refLong)*e - np.cos(refLong)*np.sin(refLat)*n + np.cos(refLong)*np.cos(refLat)*u + refX
     y = np.cos(refLong)*e - np.sin(refLong)*np.sin(refLat)*n + np.cos(refLat)*np.sin(refLong)*u + refY
     z = np.cos(refLat)*n + np.sin(refLat)*u + refZ
+
+    # # Compute ecef coordinates (pdf)
+    # x = -np.cos(refLong)*np.sin(refLat)*n - np.sin(refLong)*e + np.cos(refLong)*np.cos(refLat)*u + refX
+    # y = -np.sin(refLat)*np.sin(refLong)*n + np.cos(refLong)*e - np.cos(refLong)*u + refY
+    # z = np.cos(refLat)*n + np.sin(refLat)*u + refZ
 
     return x, y, z
 

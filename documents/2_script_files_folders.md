@@ -5,6 +5,7 @@
 2. [**Script files/folders**](./2_script_files_folders.md): Link to 2_script_files_folders. Description of the scripts inside the repository.
 3. [**Documents of interest**](./3_documents_of_interest.md): Link to 3_documents_of_interest. Some documents of interest.
 4. [**Webs of interest**](./4_links_to_web_of_interest.md): Link to 4_links_to_web_of_interest. Some links to webs of interest.
+5. [**List of references**](./documents/5_list_references.md): List with all the references.
 <br/><br/>
 
 The repository have the following structure:
@@ -22,10 +23,12 @@ COORDINATE_SYSTEMS
 |   |-2_script_files_folders.md
 |   |-3_documents_of_interest.md
 |   |-4_links_to_web_of_interest.md
+|   |-5_list_references.md
 |   |
 |   |-images
 |   |   |
 |   |   |-3D_Spherical.png
+|   |   |-Division_of_the_Earth_into_Gauss-Krueger_zones_-_Net.png
 |   |   |-ecef_enu_coordinate_systems.png
 |   |   |-ellipsoid_parametric_euler_mono.png
 |   |   |-geodetic_coordinates.png
@@ -38,7 +41,8 @@ COORDINATE_SYSTEMS
 |   |
 |   |-pdf
 |       |
-|       |-Capitulo_5_conversion_de_coordenadas.pdf
+|       |-Capitulo_5_conversion_de_coordenadas.pdf 
+|       |-EFFICIENT TRANSFORMATION FROM CARTESIAN TO GEODETIC COORDINATES.pdf
 |       |-Transforming Cartesian Coordinates to Geographical coordinates.pdf
 |       |-TRF_Altamimi.pdf
 |
@@ -95,6 +99,7 @@ COORDINATE_SYSTEMS
     |-2_script_files_folders.md
     |-3_documents_of_interest.md
     |-4_links_to_web_of_interest.md
+    |-5_list_references.md
 ```
 
 ### **2.2.2 images**

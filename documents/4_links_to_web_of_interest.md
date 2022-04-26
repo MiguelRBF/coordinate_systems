@@ -4,6 +4,7 @@
 2. [**Script files/folders**](./2_script_files_folders.md): Link to 2_script_files_folders. Description of the scripts inside the repository.
 3. [**Documents of interest**](./3_documents_of_interest.md): Link to 3_documents_of_interest. Some documents of interest.
 4. [**Webs of interest**](./4_links_to_web_of_interest.md): Link to 4_links_to_web_of_interest. Some links to webs of interest.
+5. [**List of references**](./documents/5_list_references.md): List with all the references.
 <br/><br/>
 
 - Web0: http://wiki.gis.com/wiki/index.php/Geodetic_system
@@ -15,3 +16,4 @@
 - Web6: https://www.differencebetween.com/difference-between-altitude-and-vs-height/
 - Web7: https://github.com/geospace-code/pymap3d
 - Web8: https://geospace-code.github.io/pymap3d/
+- Web9: https://en.wikipedia.org/wiki/Spherical_coordinate_system

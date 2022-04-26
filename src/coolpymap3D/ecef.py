@@ -230,6 +230,12 @@ def ecef2enu_llaRef(
     # First find reference location in ECEF coordinates
     refX, refY, refZ = lla2ecef(refLat, refLong, refAlt, ell, deg)
 
+    # If the reference coordinates are given in degrees
+    if deg:
+        # Convert the reference latitude and longitude into radians
+        refLat = refLat*pi/180
+        refLong = refLong*pi/180
+
     # Compute ENU coordinates
     e = -np.sin(refLong)*(x-refX) + np.cos(refLong)*(y-refY)
     n = -np.sin(refLat)*np.cos(refLong)*(x-refX) - np.sin(refLat)*np.sin(refLong)*(y-refY) + np.cos(refLat)*(z-refZ)

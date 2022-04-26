@@ -196,8 +196,15 @@ void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, lon
 	// Define intermediate parameters
 	long double refXYZ[]={0,0,0};
 
-	// First find reference location ecef coordinates (x, y, z)
+	// First find reference location in ecef coordinates (x, y, z)
     lla2ecef(refLLA, ell, refXYZ, false);
+
+    //If the reference coordinates are given in degrees
+    if (deg){
+    	// Convert the reference latitude and longitude into radians
+    	refLat = refLat*M_PI/180.0;
+    	refLon = refLon*M_PI/180.0;
+    }
 
 	// Get reference ecef coordinates
 	long double refX=refXYZ[0], refY=refXYZ[1], refZ=refXYZ[2];
