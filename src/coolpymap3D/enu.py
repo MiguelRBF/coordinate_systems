@@ -46,9 +46,10 @@ def enu2ecef_ecefRef(
     refZ: np.float64,
     e: np.float64,
     n: np.float64,
-    u: np.float64):
+    u: np.float64,
+    ell: Ellipsoid = None):
     '''
-    This function convert local east, north, up coordinates (labeled e, n, u) to ECEF coordinates.
+    This function converts local east, north, up coordinates (labeled e, n, u) to ECEF coordinates.
 
     A reference point in ECEF coordinates (x, y, z - refX, refY, refZ)
     must be given. All distances are in meters.
@@ -84,13 +85,9 @@ def enu2ecef_ecefRef(
     '''
 
     # First find reference location in LLA coordinates
-    refLat, refLong, refH = ecef2lla(refX, refY, refZ)
+    refLat, refLong, refH = ecef2lla(refX, refY, refZ, ell, False)
 
-    # Convert the reference latitude and longitude into radians
-    refLat = refLat*pi/180
-    refLong = refLong*pi/180
-
-    # Compute ecef coordinates
+    # Compute ecef coordinates (x,y,x)
     x = -np.sin(refLong)*e - np.cos(refLong)*np.sin(refLat)*n + np.cos(refLong)*np.cos(refLat)*u + refX
     y = np.cos(refLong)*e - np.sin(refLong)*np.sin(refLat)*n + np.cos(refLat)*np.sin(refLong)*u + refY
     z = np.cos(refLat)*n + np.sin(refLat)*u + refZ
@@ -108,11 +105,11 @@ def enu2ecef_llaRef(
     deg: bool = True
     ):
     '''
-    This function convert local east, north, up coordinates (labeled e, n, u)
+    This function converts local east, north, up coordinates (labeled e, n, u)
     to ECEF coordinates.
 
     A reference point in geodetic coordinate system
-    (latitude, longitude, height - refLat, refLong, refH)
+    (latitude, longitude, height - refLat, refLong, refA)
     must be given. Longitude and latitude can be given in decimal degrees
     or radians (default decimal degrees). All distances are in meters.
 
@@ -159,15 +156,10 @@ def enu2ecef_llaRef(
         refLat = refLat*pi/180
         refLong = refLong*pi/180
 
-    # Compute ecef coordinates (original)
+    # Compute ecef coordinates (x,y,x)
     x = -np.sin(refLong)*e - np.cos(refLong)*np.sin(refLat)*n + np.cos(refLong)*np.cos(refLat)*u + refX
     y = np.cos(refLong)*e - np.sin(refLong)*np.sin(refLat)*n + np.cos(refLat)*np.sin(refLong)*u + refY
     z = np.cos(refLat)*n + np.sin(refLat)*u + refZ
-
-    # # Compute ecef coordinates (pdf)
-    # x = -np.cos(refLong)*np.sin(refLat)*n - np.sin(refLong)*e + np.cos(refLong)*np.cos(refLat)*u + refX
-    # y = -np.sin(refLat)*np.sin(refLong)*n + np.cos(refLong)*e - np.cos(refLong)*u + refY
-    # z = np.cos(refLat)*n + np.sin(refLat)*u + refZ
 
     return x, y, z
 

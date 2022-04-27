@@ -121,7 +121,8 @@ def ecef2enu_ecefRef(
     z: np.float64,
     ell: Ellipsoid = None
     ):
-    '''This function convert ECEF coordinates to local east, north, up coordinates (ENU).
+    '''
+    This function converts ECEF coordinates to local east, north, up coordinates (ENU).
 
     A reference point in ECEF coordinates (x, y, z - refX, refY, refZ)
     must be given. All distances are in meters.

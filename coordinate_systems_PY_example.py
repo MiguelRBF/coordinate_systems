@@ -1,7 +1,7 @@
 # --- CORDINATE SYSTEMS ---
 #--------------------------------------------
-# Module name:      coordinate_systems.py
-# Created by:       rbf
+# Module name:      coordinate_systems_PY_example.py
+# Created by:       MiguelRBF
 #--------------------------------------------
 '''
 This module was created to manage the change between coordinate systems

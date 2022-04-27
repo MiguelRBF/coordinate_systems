@@ -45,7 +45,7 @@ def lla2ecef(
     deg: bool = True
     ):
     '''
-    Convert lat, long, altitude in geodetic of specified ellipsoid (default WGS-84)
+    This funtion converts lat, long, altitude in geodetic of specified ellipsoid (default WGS-84)
     to ECEF X,Y,Z. Longitude and latitude can be given in decimal degrees or radians 
     (default decimal degrees). Altitude must be given in meters.
 
@@ -91,7 +91,7 @@ def lla2ecef(
     # Compute chi parameter
     chi = np.sqrt(1-ell.e2*(np.sin(lat))**2)
 
-    # Compute x, y and z coordinates
+    # Compute ecef coordinates (x,y,x)
     x = (ell.a/chi +alt)*np.cos(lat)*np.cos(long)
     y = (ell.a/chi +alt)*np.cos(lat)*np.sin(long)
     z = (ell.a*(1-ell.e2)/chi + alt)*np.sin(lat)
