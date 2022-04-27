@@ -1,12 +1,20 @@
 <img src="./documents/images/3D_Spherical.png" width="600">
-<br/><br/>
+<br/>
 
 # **coordinate_systems**
-This module was created to manage the change between coordinate systems
+This module was created to manage the change between coordinate systems.
 
-## **COORDINATE_SYSTEMS**
+It also can be useful as 'rosetta stone' to decode between code languages.
 
-The following index will show the information/scripts inside the repository:
+<br/>
+<img src="./documents/images/Rosetta_Stone.jpg" width="600">
+<br/>
+
+The Rosetta Stone is a stele composed of granodiorite inscribed with three versions of a decree issued in Memphis, Egypt, in 196 BC during the Ptolemaic dynasty on behalf of King Ptolemy V Epiphanes. The top and middle texts are in Ancient Egyptian using hieroglyphic and Demotic scripts respectively, while the bottom is in Ancient Greek. The decree has only minor differences between the three versions, making the Rosetta Stone key to deciphering the Egyptian scripts.
+
+## **coordinate systems index**
+
+The following index show the information/scripts inside the repository:
 
 1. [**Coordinate systems - Information**](./documents/1_coordinate_systems_information.md): Some information about coordinate systems.
 2. [**Script files/folders**](./documents/2_script_files_folders.md): Description of the scripts inside the repository.

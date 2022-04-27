@@ -100,6 +100,16 @@ author:
 
 ---
 
+Rosetta_Stone.jpg
+
+https://es.wikipedia.org/wiki/Piedra_de_Rosetta#/media/Archivo:Rosetta_Stone.JPG
+
+Reference date: 20/04/2022
+
+author: De © Hans Hillewaert, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=3153928
+
+---
+
 Utm-zones.jpg
 
 https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffacilitageo.com%2Fwp-content%2Fuploads%2F2021%2F06%2F20210704-papiros-a-questao-a-1024x512.jpg&f=1&nofb=1

@@ -36,6 +36,7 @@ COORDINATE_SYSTEMS
 |   |   |-geodetic_vs_geocentric_latitude.png
 |   |   |-latitude_and_longitude_graticule_on_an_ellipsoid.png
 |   |   |-Malla-Universal-Transversa-Mercator-UTM.jpg
+|   |   |-Rosetta_Stone.jpg
 |   |   |-Utm-zones.jpg
 |   |   |-WGS84_ellipsoid.png
 |   |
