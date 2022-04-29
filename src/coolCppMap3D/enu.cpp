@@ -64,7 +64,7 @@ void enu2ecef_ecefRef(long double refXYZ[], long double enu[], Ellipsoid ell, lo
 	long double refLLA[]={0, 0, 0};
 
 	// First find reference location in LLA coordinates
-    ecef2lla(refXYZ, ell, refLLA, false);
+    ecef2lla(refXYZ, ell, false, refLLA);
 
 	// Get reference latitude, longitude coordinates
 	long double refLat=refLLA[0], refLon=refLLA[1];
@@ -76,7 +76,7 @@ void enu2ecef_ecefRef(long double refXYZ[], long double enu[], Ellipsoid ell, lo
 
 }
 
-void enu2ecef_llaRef(long double refLLA[], long double enu[], Ellipsoid ell, long double xyz[], bool deg){
+void enu2ecef_llaRef(long double refLLA[], long double enu[], Ellipsoid ell, bool deg, long double xyz[]){
 	/*
 	This function convert local east, north, up coordinates (labeled e, n, u)
     to ECEF coordinates.
@@ -133,7 +133,7 @@ void enu2ecef_llaRef(long double refLLA[], long double enu[], Ellipsoid ell, lon
 	long double refXYZ[]={0,0,0};
 
 	// First find reference location ecef coordinates (x, y, z)
-    lla2ecef(refLLA, ell, refXYZ, true);
+    lla2ecef(refLLA, ell, true, refXYZ);
 
     //If the reference coordinates are given in degrees
     if (deg){

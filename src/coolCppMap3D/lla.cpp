@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void lla2ecef(long double lla[], Ellipsoid ell, long double xyz[], bool deg){
+void lla2ecef(long double lla[], Ellipsoid ell, bool deg, long double xyz[]){
 
 	/*
 	Convert lat, long, altitude in geodetic of specified ellipsoid

@@ -224,7 +224,7 @@ def ecef2enu_llaRef(
     u
         target up ENU coordinate (meters)
     '''
-    # If no ellipsoid is defined define the default ellipsoid (WGS84)
+    # If no ellipsoid is defined, define the default ellipsoid (WGS84)
     if ell is None:
         ell = Ellipsoid()
 

@@ -11,6 +11,6 @@
 // Include ellipsoid .h were is defined Ellipsoid class
 #include "ellipsoid.h"
 
-void lla2ecef(long double lla[], Ellipsoid ell, long double xyz[], bool deg);
+void lla2ecef(long double lla[], Ellipsoid ell, bool deg, long double xyz[]);
 
 #endif /* LLA_H */

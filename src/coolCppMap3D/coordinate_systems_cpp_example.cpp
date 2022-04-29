@@ -39,14 +39,14 @@ int main(){
 	printf("Bern coordinates computations\n");
 
 	// Get the latitude, longitude and altitude coordinates
-	ecef2lla(xyz, ell_wgs84, lla, degrees);
+	ecef2lla(xyz, ell_wgs84, degrees, lla);
 
 	// Print output
 	printf("Bern coordinates from xyz\n");
 	printf("[l,l,a] = [%.12Lf,%.12Lf,%.12Lf]\n",lla[0],lla[1],lla[2]);
 
 	// Get the x, y z coordinates
-	lla2ecef(lla, ell_wgs84, xyz, degrees);
+	lla2ecef(lla, ell_wgs84, degrees, xyz);
 
 	// Print output
 	printf("Bern coordinates from lla\n");
@@ -59,19 +59,34 @@ int main(){
 	long double refXYZ[] = {4325481.828902193,565424.2388267403,4638228.339585699};
 	long double refLLA[] = {46.9480900,7.4474400,549};
 
-	// Get the x, y z coordinates
+	// Get the x, y z coordinates. ECEF reference
 	enu2ecef_ecefRef(refXYZ, enu, ell_wgs84, xyz);
 
 	// Print output
-	printf("Bern coordinates from enu: xyz reference\n");
+	printf("Bern xyz coordinates from enu: ecef reference\n");
 	printf("[x,y,z] = [%.12Lf,%.12Lf,%.12Lf]\n",xyz[0],xyz[1],xyz[2]);
 
-	// Get the x, y z coordinates
-	enu2ecef_llaRef(refLLA, enu, ell_wgs84, xyz, degrees);
+	// Get the x, y z coordinates. LLA reference
+	enu2ecef_llaRef(refLLA, enu, ell_wgs84, degrees, xyz);
 
 	// Print output
-	printf("Bern coordinates from enu: lla reference\n");
-	printf("[x,y,z] = [%.12Lf,%.12Lf,%.12Lf]\n",xyz[0],xyz[1],xyz[2]);
+	printf("Bern xyz coordinates from enu: lla reference\n");
+	printf("[x,y,z] = [%.12Lf,%.12Lf,%.12Lf]\n\n",xyz[0],xyz[1],xyz[2]);
+
+	// Get the enu coordinates. ECEF reference
+	ecef2enu_ecefRef(refXYZ, xyz, ell_wgs84, enu);
+
+	// Print output
+	printf("Bern enu coordinates from xyz: ecef reference\n");
+	printf("[e,n,u] = [%.12Lf,%.12Lf,%.12Lf]\n",enu[0],enu[1],enu[2]);
+
+	// Get the enu coordinates. ECEF reference
+	ecef2enu_llaRef(refLLA, xyz, ell_wgs84, degrees, enu);
+
+	// Print output
+	printf("Bern enu coordinates from xyz: lla reference\n");
+	printf("[e,n,u] = [%.12Lf,%.12Lf,%.12Lf]\n",enu[0],enu[1],enu[2]);
+
 
     return 0;
 }

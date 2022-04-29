@@ -1,13 +1,57 @@
-# **4 Links to webs of interest**
+# **5 List of references**
 0. [**README link**](./../README.md): Link to main README file.
 1. [**Coordinate systems - Information**](./1_coordinate_systems_information.md): Link to 1_coordinate_systems_information. Description of the scripts inside the repository.
 2. [**Script files/folders**](./2_script_files_folders.md): Link to 2_script_files_folders. Description of the scripts inside the repository.
 3. [**Documents of interest**](./3_documents_of_interest.md): Link to 3_documents_of_interest. Some documents of interest.
-4. [**Webs of interest**](./4_links_to_web_of_interest.md): Link to 4_links_to_web_of_interest. Some links to webs of interest.
+4. [**Webs of interest**](./4_link_to_webs_of_interest.md): Link to 4_link_to_webs_of_interest. Some links to webs of interest.
 5. [**List of references**](./5_list_references.md): List with all the references.
 <br/><br/>
 
-# Images
+
+## **5.1 Information and scripts sources**
+### **5.1.1 geospace_code/pymap3d**
+
+Github repository link:
+
+- https://github.com/geospace-code/pymap3d
+
+The following scripts were taken from this github repository:
+
+- src/coolPyMap3D/sidereal.py
+- src/coolPyMap3D/timeconve.py
+- src/coolPyMap3D/utils.py
+
+Inside the following folder you will find all the information related with the permisions and limits of this scripts:
+
+- **licenses/geospace_code_pymap3d**
+
+Reference date: 29/04/2022
+
+---
+<br/>
+
+### **5.1.2 Wiki.GIS.com - The GIS Encyclopedia**
+
+- http://wiki.gis.com/wiki/index.php/Main_Page
+
+The Octave/Matlab code was based in the code writen in the following web page:
+
+- http://wiki.gis.com/wiki/index.php/Geodetic_system
+
+Reference date: 29/04/2022
+
+#### **5.1.2.1 Terms of use web link**
+
+- http://wiki.gis.com/wiki/index.php/Wiki.GIS.com:Terms_of_use
+
+#### **5.1.2.2 Copyright**
+
+- http://wiki.gis.com/wiki/index.php/Wiki.GIS.com:Copyright
+
+---
+<br/>
+
+## **5.2 Images**
 
 3D_Spherical.png
 
@@ -129,8 +173,9 @@ Reference date: 20/04/2022
 author:
 
 ---
+<br/>
 
-# PDF
+## **5.3 PDF**
 
 Capitulo_5_conversion_de_coordenadas.pdf
 
@@ -171,3 +216,12 @@ Reference date: 26/04/2022
 author:
 
 ---
+<br/>
+
+## **5.4 Text references** 
+
+- [**1**] https://en.wikipedia.org/wiki/Rosetta_Stone
+- [**2**] https://en.wikipedia.org/wiki/Geodetic_datum#:~:text=A%20geodetic%20datum%20or%20geodetic,by%20means%20of%20geodetic%20coordinates.
+- [**3**] https://en.wikipedia.org/wiki/Latitude#Ellipsoidal-harmonic_coordinates
+- [**4**] https://en.wikipedia.org/wiki/Latitude
+- [**5**] http://dirsig.cis.rit.edu/docs/new/coordinates.html

@@ -16,6 +16,6 @@
 
 void enu2ecef_ecefRef(long double refXYZ[], long double enu[], Ellipsoid ell, long double xyz[]);
 
-void enu2ecef_llaRef(long double refLLA[], long double enu[], Ellipsoid ell, long double xyz[], bool deg);
+void enu2ecef_llaRef(long double refLLA[], long double enu[], Ellipsoid ell, bool deg, long double xyz[]);
 
 #endif /* ENU_H */

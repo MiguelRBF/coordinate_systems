@@ -13,10 +13,10 @@
 
 #include "lla.h"
 
-void ecef2lla(long double xyz[], Ellipsoid ell, long double lla[], bool deg);
+void ecef2lla(long double xyz[], Ellipsoid ell, bool deg, long double lla[]);
 
 void ecef2enu_ecefRef(long double refXYZ[], long double xyz[], Ellipsoid ell, long double enu[]);
 
-void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, long double enu[], bool deg);
+void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, bool deg, long double enu[]);
 
 #endif /* ECEF_H */

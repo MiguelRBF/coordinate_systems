@@ -4,7 +4,7 @@
 1. [**Coordinate systems - Information**](./1_coordinate_systems_information.md): Link to 1_coordinate_systems_information. Description of the scripts inside the repository.
 2. [**Script files/folders**](./2_script_files_folders.md): Link to 2_script_files_folders. Description of the scripts inside the repository.
 3. [**Documents of interest**](./3_documents_of_interest.md): Link to 3_documents_of_interest. Some documents of interest.
-4. [**Webs of interest**](./4_links_to_web_of_interest.md): Link to 4_links_to_web_of_interest. Some links to webs of interest.
+4. [**Webs of interest**](./4_link_to_webs_of_interest.md): Link to 4_link_to_webs_of_interest. Some links to webs of interest.
 5. [**List of references**](./5_list_references.md): List with all the references.
 <br/><br/>
 
@@ -41,11 +41,18 @@ COORDINATE_SYSTEMS
 |   |   |-WGS84_ellipsoid.png
 |   |
 |   |-pdf
+|   |   |
+|   |   |-Capitulo_5_conversion_de_coordenadas.pdf 
+|   |   |-EFFICIENT TRANSFORMATION FROM CARTESIAN TO GEODETIC COORDINATES.pdf
+|   |   |-Transforming Cartesian Coordinates to Geographical coordinates.pdf
+|   |   |-TRF_Altamimi.pdf
+|   |
+|   |-licenses
 |       |
-|       |-Capitulo_5_conversion_de_coordenadas.pdf 
-|       |-EFFICIENT TRANSFORMATION FROM CARTESIAN TO GEODETIC COORDINATES.pdf
-|       |-Transforming Cartesian Coordinates to Geographical coordinates.pdf
-|       |-TRF_Altamimi.pdf
+|       |-geospace_code_pymap3d
+|           |
+|           |-license
+|           |-license_github.png
 |
 |- scripts
 |   |
@@ -134,8 +141,24 @@ COORDINATE_SYSTEMS
    |
    |-pdf
 ```
-Further information about this folder at the following link:
+You will find further information about this folder at the following link:
+
 - [**Documents of interest**](./3_documents_of_interest.md): Link to 3_documents_of_interest. Some documents of interest.
+
+## licenses\geospace_code_pymap3d
+
+```
+COORDINATE_SYSTEMS
+|
+|-documents
+|   |
+|   |-licenses
+|       |
+|       |-geospace_code_pymap3d
+|           |
+|           |-license
+|           |-license_github.png
+```
 
 ## **2.3 scripts**
 Now empty.

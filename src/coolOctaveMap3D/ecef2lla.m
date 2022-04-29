@@ -31,11 +31,11 @@ function [lat, long, alt]=ecef2lla(X, Y, Z, ell, deg)
     #     target altitude above geodetic ellipsoid (meters)
     
     # Get the ellipsoid parameters
-    a = ell(1)
-    f = ell(2)
-    b = ell(3)
-    e2 = ell(4)
-    ep2 = ell(5)
+    a = ell(1);
+    f = ell(2);
+    b = ell(3);
+    e2 = ell(4);
+    ep2 = ell(5);
     
     # Inter,mediate computations
     r2 = X.^2+Y.^2;

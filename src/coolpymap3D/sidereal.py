@@ -1,4 +1,7 @@
 # Copyright (c) 2014-2018 Michael Hirsch, Ph.D.
+# Copyright (c) 2013, Felipe Geremia Nievinski
+# Copyright (c) 2004-2007 Michael Kleder
+
 # --- Manipulations of sidereal time ---
 #--------------------------------------------
 # Module name:      sidereal.py

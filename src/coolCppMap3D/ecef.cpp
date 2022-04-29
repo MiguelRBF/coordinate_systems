@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void ecef2lla(long double xyz[], Ellipsoid ell, long double lla[], bool deg){
+void ecef2lla(long double xyz[], Ellipsoid ell, bool deg, long double lla[]){
 
 	/*
 	This function was created to change between ECEF coordinate system to
@@ -59,7 +59,7 @@ void ecef2lla(long double xyz[], Ellipsoid ell, long double lla[], bool deg){
 	E2 = pow(ell.a,2) - pow(ell.b,2);
 	F = 54*pow(ell.b,2)*pow(z,2);
 	G = r2 + (1-ell.e2)*pow(z,2) - ell.e2*E2;
-	c=(ell.e2*ell.e2*F*r2)/(G*G*G);
+	c = (ell.e2*ell.e2*F*r2)/(G*G*G);
 	s = pow( 1 + c + sqrt(c*c + 2*c), 1.0/3.0);
 	P = F/(3*pow(s+1.0/s+1, 2)*G*G);
 	Q = sqrt(1+2*ell.e2*ell.e2*P);
@@ -131,7 +131,7 @@ void ecef2enu_ecefRef(long double refXYZ[], long double xyz[], Ellipsoid ell, lo
 	long double refLLA[]={0, 0, 0};
 
 	// First find reference location in latitude, longitude and height coordinates (radians)
-    ecef2lla(refXYZ, ell, refLLA, false);
+    ecef2lla(refXYZ, ell, false, refLLA);
 
 	// Get reference latitude, longitude coordinates
 	long double refLat=refLLA[0], refLon=refLLA[1];
@@ -143,7 +143,7 @@ void ecef2enu_ecefRef(long double refXYZ[], long double xyz[], Ellipsoid ell, lo
 
 }
 
-void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, long double enu[], bool deg){
+void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, bool deg, long double enu[]){
 	/*
 	This function convert ECEF coordinates to local east, north, up coordinates.
 
@@ -173,7 +173,7 @@ void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, lon
 
     ell : Ellipsoid
           reference ellipsoid
-    deg : bool, optional
+    deg : bool
           degrees input/output  (False: radians in/out)
 
     Returns
@@ -197,7 +197,7 @@ void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, lon
 	long double refXYZ[]={0,0,0};
 
 	// First find reference location in ecef coordinates (x, y, z)
-    lla2ecef(refLLA, ell, refXYZ, false);
+    lla2ecef(refLLA, ell, deg, refXYZ);
 
     //If the reference coordinates are given in degrees
     if (deg){
