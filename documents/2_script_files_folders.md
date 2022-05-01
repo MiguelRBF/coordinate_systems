@@ -85,16 +85,35 @@ COORDINATE_SYSTEMS
     |   |-coordinate_systems_cpp_example.cpp
     |
     |-coolOctaveMap3D
+    |   |
+    |   |-ecef2enu_ecefRef.m
+    |   |-ecef2enu_llaRef.m
+    |   |-ecef2lla.m
+    |   |-ellipsoidModel.m
+    |   |-enu2ecef_ecefRef.m
+    |   |-enu2ecef_llaRef.m
+    |   |-lla2ecef.m
+    |   |
+    |   |-coordinate_systems_octave_example.m
+    |
+    |-coolArduinoMap3D
         |
-        |-ecef2enu_ecefRef.m
-        |-ecef2enu_llaRef.m
-        |-ecef2lla.m
-        |-ellipsoidModel.m
-        |-enu2ecef_ecefRef.m
-        |-enu2ecef_llaRef.m
-        |-lla2ecef.m
+        |-ecef
+        |   |-ecef.h
+        |   |-ecef.cpp
         |
-        |-coordinate_systems_octave_example.m
+        |-ellipsoid
+        |   |-ellipsoid.h
+        |   |-ellipsoid.cpp
+        |
+        |-enu
+        |   |-enu.h
+        |   |-enu.cpp
+        |
+        |-lla
+            |-lla.h
+            |-lla.cpp
+
 ```
 ## **2.1 files inside COORDINATE_SYSTEMS**
 
@@ -248,4 +267,31 @@ COORDINATE_SYSTEMS
         |-lla2ecef.m
         |
         |-coordinate_systems_octave_example.m
+```
+
+## **2.7 src/coolArduinoMap3D**
+Inside this folder you will find the modules used to do reference frames conversions. Arduino code.
+
+```
+COORDINATE_SYSTEMS
+|
+|- src
+    |
+    |-coolArduinoMap3D
+        |
+        |-ecef
+        |   |-ecef.h
+        |   |-ecef.cpp
+        |
+        |-ellipsoid
+        |   |-ellipsoid.h
+        |   |-ellipsoid.cpp
+        |
+        |-enu
+        |   |-enu.h
+        |   |-enu.cpp
+        |
+        |-lla
+            |-lla.h
+            |-lla.cpp
 ```
