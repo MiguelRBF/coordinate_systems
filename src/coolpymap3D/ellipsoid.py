@@ -1,7 +1,7 @@
 # --- Minimal class for planetary ellipsoids ---
 #--------------------------------------------
 # Module name:      ellipsoid.py
-# Created by:       geospace-code/MiguelRBF
+# Created by:       MiguelRBF
 #--------------------------------------------
 '''
 This module was created to define the required 

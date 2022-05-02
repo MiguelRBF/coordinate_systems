@@ -82,7 +82,7 @@ def lla2ecef(
     if ell is None:
         ell = Ellipsoid()
 
-    # If degres is wanted as output
+    # If degres is wanted as input
     if deg:
         # Convert longitude-latitude units from degrees to radians
         lat = lat*pi/180
