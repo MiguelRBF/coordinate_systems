@@ -5,9 +5,15 @@ This module was created to manage the change between coordinate systems.
 <img src="./documents/images/3D_Spherical.png" width="600">
 <br/><br/>
 
-It also can be useful as a Rosetta Stone (bridge) between different programming languages.
+It also can be useful as a Rosetta Stone (bridge) between different programming languages. Nowadays the stone is writen in the following languages:
 
+- **Arduino**
+- **C++ (Cpp)**
+- **Java**
+- **Octave (Matlab)**
+- **Python**
 
+<br/>
 <img src="./documents/images/Rosetta_Stone.jpg" width="600">
 <br/>
 

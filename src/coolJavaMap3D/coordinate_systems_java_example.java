@@ -19,10 +19,12 @@ public class coordinate_systems_java_example {
     static public String model = "wgs84";
 
     // Define Bern geodetic coordinates (WGS84: latitude, longitude, altitude)
-    static public double[] llaBernCord = new double[]{46.94809, 7.44744, 549};
+    static public double[] llaBernCord = new double[]{46.94809, 7.44744, 549.0};
+    static public double[] llaBernCordOut = new double[]{0.0, 0.0, 0.0};
 
     // Define Bern ecef coordinates (x, y , z)
     static public double[] xyzBernCord = new double[]{4325481.828902, 565424.238826, 4638228.339585};
+    static public double[] xyzBernCordOut = new double[]{0.0, 0.0, 0.0};
     // ---  ---
 
     // Create main method
@@ -57,16 +59,29 @@ public class coordinate_systems_java_example {
         System.out.println(sf);
 
         // Compute Bern ecef coordinates from geodetic WGS84
+        // lla2ecef is static
         System.out.println("Compute Bern ecef coordinates from geodetic WGS84...\n");
-        lla_Bern_coordinates.lla2ecef();
+        xyzBernCordOut = LLA.lla2ecef(llaBernCord[0], llaBernCord[1], llaBernCord[2], ell, true);
 
         // Print Bern ecef coordinates
         System.out.println("Bern ecef coordinates:");
-        sf=String.format("x[m]: %.8f",lla_Bern_coordinates.x);  
+        sf=String.format("x[m]: %.8f",xyzBernCordOut[0]);  
         System.out.println(sf);
-        sf=String.format("y[m]: %.8f",lla_Bern_coordinates.y);  
+        sf=String.format("y[m]: %.8f",xyzBernCordOut[1]);  
         System.out.println(sf);
-        sf=String.format("z[m]: %.8f\n",lla_Bern_coordinates.z); 
+        sf=String.format("z[m]: %.8f\n",xyzBernCordOut[2]); 
+        System.out.println(sf);
+
+        // Write output into object atributes
+        lla_Bern_coordinates.xyzWrite(xyzBernCordOut[0], xyzBernCordOut[1], xyzBernCordOut[2]);
+
+        // Bern ecef coordinates, object atributes
+        System.out.println("Bern ecef coordinates, object atributes:");
+        sf=String.format("x[m]: %.8f",lla_Bern_coordinates.atri_x);  
+        System.out.println(sf);
+        sf=String.format("y[m]: %.8f",lla_Bern_coordinates.atri_y);  
+        System.out.println(sf);
+        sf=String.format("z[m]: %.8f\n",lla_Bern_coordinates.atri_z); 
         System.out.println(sf);
 
         // Create xyz_Bern_coordinates coordinate system object
@@ -83,16 +98,19 @@ public class coordinate_systems_java_example {
 
         // Compute Bern geodetic WGS84 coordinates from ecef
         System.out.println("Compute Bern geodetic WGS84 coordinates from ecef...\n");
-        xyz_Bern_coordinates.ecef2lla();
+        llaBernCordOut = ECEF.ecef2lla(xyzBernCord[0], xyzBernCord[1], xyzBernCord[2], ell, true);
 
         // Print Bern ecef coordinates
         System.out.println("Bern geodetic (WGS84) coordinates:");
-        sf=String.format("Latitude[°]: %.8f",xyz_Bern_coordinates.lat);  
+        sf=String.format("Latitude[°]: %.8f",llaBernCordOut[0]);  
         System.out.println(sf);
-        sf=String.format("Longitude[°]: %.8f",xyz_Bern_coordinates.lon);  
+        sf=String.format("Longitude[°]: %.8f",llaBernCordOut[1]);  
         System.out.println(sf);
-        sf=String.format("Altitude[m]: %.8f\n",xyz_Bern_coordinates.alt); 
+        sf=String.format("Altitude[m]: %.8f\n",llaBernCordOut[2]); 
         System.out.println(sf);
+
+        // Write output into object atributes
+        xyz_Bern_coordinates.llaWrite(llaBernCordOut[0], llaBernCordOut[1], llaBernCordOut[2]);
 
     }
     

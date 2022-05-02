@@ -97,7 +97,7 @@ def ecef2lla(
     tmp = (r - ell.e2*ro)**2
     U = np.sqrt( tmp + z**2 )
     V = np.sqrt( tmp + (1-ell.e2)*z**2 )
-    zo = (ell.b**2*z)/(ell.a*V)   
+    zo = (ell.b**2*z)/(ell.a*V)
 
     # Now get the final coordinates: longitude, latitude and altitude
     lat = np.arctan((z+ell.ep2*zo)/r)
@@ -164,7 +164,7 @@ def ecef2enu_ecefRef(
         ell = Ellipsoid()
     
     # First find reference location in LLA coordinates (radians)
-    refLat, refLong, refH = ecef2lla(refX, refY, refZ, ell, False)
+    refLat, refLong, _ = ecef2lla(refX, refY, refZ, ell, False)
 
     # Compute ENU coordinates
     e = -np.sin(refLong)*(x-refX) + np.cos(refLong)*(y-refY)
@@ -183,10 +183,11 @@ def ecef2enu_llaRef(
     ell: Ellipsoid = None,
     deg: bool = True
     ):
-    '''This function convert ECEF coordinates to local east, north, up coordinates.
+    '''
+    This function convert ECEF coordinates to local east, north, up coordinates.
 
     A reference point in geodetic coordinate system 
-    (latitude, longitude, height - refLat, refLong, refH)
+    (latitude, longitude, height - refLat, refLong, refAlt)
     must be given. All distances are in meters.
     
     np arrays can be given as inputs.

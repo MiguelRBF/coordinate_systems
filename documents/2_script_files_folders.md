@@ -96,6 +96,19 @@ COORDINATE_SYSTEMS
     |   |
     |   |-coordinate_systems_octave_example.m
     |
+    |-coolJavaMap3D
+    |   |
+    |   |-ECEF
+    |   |   |-ECEF.java
+    |   |
+    |   |-Ellipsoid
+    |   |   |-Ellipsoid.java
+    |   |
+    |   |-LLA
+    |   |   |-LLA.java
+    |   |
+    |   |-coordinate_systems_java_example.java
+    |
     |-coolArduinoMap3D
         |
         |-ecef
@@ -269,7 +282,29 @@ COORDINATE_SYSTEMS
         |-coordinate_systems_octave_example.m
 ```
 
-## **2.7 src/coolArduinoMap3D**
+## **2.7 src/coolJavaMap3D**
+Inside this folder you will find the modules used to do reference frames conversions. Java code.
+
+```
+COORDINATE_SYSTEMS
+|
+|- src
+    |
+    |-coolJavaMap3D
+        |
+        |-ECEF
+        |   |-ECEF.java
+        |
+        |-Ellipsoid
+        |   |-Ellipsoid.java
+        |
+        |-LLA
+        |   |-LLA.java
+        |
+        |-coordinate_systems_java_example.java
+```
+
+## **2.8 src/coolArduinoMap3D**
 Inside this folder you will find the modules used to do reference frames conversions. Arduino code.
 
 ```

@@ -12,52 +12,50 @@ This module was created to transforms from LLA
 // Package definition
 package LLA;
 
+// Import used packages
 import ellipsoidDefinition.Ellipsoid;
 
 public class LLA {
 
     // --- Class atributes ---
     // Input latitude
-    public double lat;
+    public double atri_lat;
     // Input longitude
-    public double lon;
+    public double atri_lon;
     // Input altitude
-    public double alt;
+    public double atri_alt;
     // Input ellipsoid
-    public Ellipsoid ell;
+    public Ellipsoid atri_ell;
     // Input degrees. If true, input is given in degrees.
-    public boolean deg;
-
-    // define intermediate variables
-    private double chi;
+    public boolean atri_deg;
 
     // Output lla2ecef method
     // Output x coordinate
-    public double x;
+    public double atri_x;
     // Output y coordinate
-    public double y;
+    public double atri_y;
     // Output z coordinate
-    public double z;
+    public double atri_z;
     // ---  ---
 
     // Class constructor
     public LLA(double latitude, double longitude, double altitude, Ellipsoid ellipsoid, boolean degrees){
 
         // Define latitude, longitude and altitude
-        lat = latitude;
-        lon = longitude;
-        alt = altitude;
+        atri_lat = latitude;
+        atri_lon = longitude;
+        atri_alt = altitude;
 
         // Define the ellipsoid model to be used
-        ell = ellipsoid;
+        atri_ell = ellipsoid;
 
         // Define the type of input argument
-        deg = degrees;
+        atri_deg = degrees;
         
     }
 
     // Define lla2ecef method
-    public void lla2ecef(){
+    static public double[] lla2ecef(double lat, double lon, double alt, Ellipsoid ell, boolean deg){
 
         /*
         This method converts lat, long, altitude in geodetic of specified 
@@ -91,19 +89,44 @@ public class LLA {
             target z ECEF coordinate (meters)
         */
 
+        // Define output parameter
+        double[] xyz = new double[]{0.0, 0.0, 0.0};
+
+        // Define intermediate variables
+        double radLat, radLon;
+        double chi;
+
         // If degres is wanted as input
         if (deg){
             // Convert longitude-latitude units from degrees to radians
-            lat = lat*Math.PI/180.0;
-            lon = lon*Math.PI/180.0;
+            radLat = lat*Math.PI/180.0;
+            radLon = lon*Math.PI/180.0;
+        } else{
+            radLat = lat;
+            radLon = lon;
         }
 
         // Compute chi parameter
-        this.chi = Math.sqrt(1-ell.e2*Math.pow(Math.sin(lat), 2));
+        chi = Math.sqrt(1-ell.e2*Math.pow(Math.sin(radLat), 2));
 
-        this.x = (ell.a/chi +alt)*Math.cos(lat)*Math.cos(lon);
-        this.y = (ell.a/chi +alt)*Math.cos(lat)*Math.sin(lon);
-        this.z = (ell.a*(1-ell.e2)/this.chi + alt)*Math.sin(lat);
+        xyz[0] = (ell.a/chi +alt)*Math.cos(radLat)*Math.cos(radLon);
+        xyz[1] = (ell.a/chi +alt)*Math.cos(radLat)*Math.sin(radLon);
+        xyz[2] = (ell.a*(1-ell.e2)/chi + alt)*Math.sin(radLat);
+
+        // Return output coordinates
+        return xyz;
+    }
+
+    // Define xyzWrite method
+    public void xyzWrite(double x_coordinate, double y_coordinate, double z_coordinate){
+        /*
+        Method to write output coordinates into the object atributes
+        */
+
+        // Define x , y, z object atributes coordinates
+        atri_x = x_coordinate;
+        atri_y = y_coordinate;
+        atri_z = z_coordinate;
     }
     
 }
