@@ -248,6 +248,13 @@ public class ECEF {
         // lla2ecef is static
         refXYZ =  LLA.lla2ecef(refLat, refLon, refAlt, ell, deg);
 
+        // If the reference coordinates are given in degrees
+        if (deg){
+            // Convert the reference latitude and longitude into radians
+            refLat = refLat*Math.PI/180.0;
+            refLon = refLon*Math.PI/180.0;
+        }
+
         // Compute ENU coordinates
         enu[0] = -Math.sin(refLon)*(x-refXYZ[0]) + Math.cos(refLon)*(y-refXYZ[1]);
         enu[1] = -Math.sin(refLat)*Math.cos(refLon)*(x-refXYZ[0]) - Math.sin(refLat)*Math.sin(refLon)*(y-refXYZ[1]) + Math.cos(refLat)*(z-refXYZ[2]);

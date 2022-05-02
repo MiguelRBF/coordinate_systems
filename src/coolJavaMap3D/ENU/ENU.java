@@ -16,25 +16,17 @@ public class ENU {
 
     // --- Class atributes ---
     
-    // Input latitude
+    // Input e
     public double atri_e;
-    // Input longitude
+    // Input n
     public double atri_n;
-    // Input altitude
+    // Input u
     public double atri_u;
     
     // Input ellipsoid
     public Ellipsoid atri_ell;
     // Input degrees. If true, input is given in degrees.
     public boolean atri_deg;
-
-    // Output ecef2lla method
-    // Output latitude
-    public double atri_lat;
-    // Output longitude
-    public double atri_lon;
-    // Output altitude
-    public double atri_alt;
 
     // Output enu2ecef methods
     // Output x coordinate
@@ -187,6 +179,18 @@ public class ENU {
 
         // Return output coordinates
         return xyz;
+    }
+
+    // Define xyzWrite method
+    public void xyzWrite(double x_coordinate, double y_coordinate, double z_coordinate){
+        /*
+        Method to write output coordinates into the object atributes
+        */
+
+        // Define x , y, z object atributes coordinates
+        atri_x = x_coordinate;
+        atri_y = y_coordinate;
+        atri_z = z_coordinate;
     }
     
 }

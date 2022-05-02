@@ -11,6 +11,7 @@ This module was created to manage the change between coordinate systems
 import ellipsoidDefinition.Ellipsoid;
 import LLA.LLA;
 import ECEF.ECEF;
+import ENU.ENU;
 
 public class coordinate_systems_java_example {
 
@@ -25,6 +26,15 @@ public class coordinate_systems_java_example {
     // Define Bern ecef coordinates (x, y , z)
     static public double[] xyzBernCord = new double[]{4325481.828902, 565424.238826, 4638228.339585};
     static public double[] xyzBernCordOut = new double[]{0.0, 0.0, 0.0};
+
+    // Supose a reference GNSS station in Bern with and ENU error of:
+    // E=1.0m , N=0.798654m and U=1.6543m
+    // Use as reference the Bern position
+
+    // Define Bern station ecef coordinates (x, y , z)
+    static public double[] enuStationBernCord = new double[]{1.0, 0.798654, 1.6543};
+    static public double[] enuStationBernCordOut = new double[]{0.0, 0.0, 0.0};
+    static public double[] xyzStationBernCordOut = new double[]{0.0, 0.0, 0.0};
     // ---  ---
 
     // Create main method
@@ -59,7 +69,6 @@ public class coordinate_systems_java_example {
         System.out.println(sf);
 
         // Compute Bern ecef coordinates from geodetic WGS84
-        // lla2ecef is static
         System.out.println("Compute Bern ecef coordinates from geodetic WGS84...\n");
         xyzBernCordOut = LLA.lla2ecef(llaBernCord[0], llaBernCord[1], llaBernCord[2], ell, true);
 
@@ -112,6 +121,66 @@ public class coordinate_systems_java_example {
         // Write output into object atributes
         xyz_Bern_coordinates.llaWrite(llaBernCordOut[0], llaBernCordOut[1], llaBernCordOut[2]);
 
+        // Create xyz_Bern_coordinates coordinate system object
+        ENU enu_Bern_coordinates = new ENU(enuStationBernCord[0], enuStationBernCord[1], enuStationBernCord[2], ell, true);
+        
+        // Compute Bern station ecef coordinates from enu, ecef reference
+        System.out.println("Compute Bern station ecef coordinates from enu, ecef reference...\n");
+        xyzStationBernCordOut = ENU.enu2ecef_ecefRef(xyzBernCord[0], xyzBernCord[1], xyzBernCord[2], enuStationBernCord[0], enuStationBernCord[1], enuStationBernCord[2], ell);
+
+        // Print Bern station ecef coordinates
+        System.out.println("Bern station ecef coordinates:");
+        sf=String.format("x[m]: %.8f",xyzStationBernCordOut[0]);  
+        System.out.println(sf);
+        sf=String.format("y[m]: %.8f",xyzStationBernCordOut[1]);  
+        System.out.println(sf);
+        sf=String.format("z[m]: %.8f\n",xyzStationBernCordOut[2]); 
+        System.out.println(sf);
+
+        // Write output into object atributes
+        enu_Bern_coordinates.xyzWrite(xyzStationBernCordOut[0], xyzStationBernCordOut[1], xyzStationBernCordOut[2]);
+
+        // Compute Bern station enu coordinates from ecef, ecef reference
+        System.out.println("Compute Bern station enu coordinates from ecef, ecef reference...\n");
+        enuStationBernCordOut = ECEF.ecef2enu_ecefRef(xyzBernCord[0], xyzBernCord[1], xyzBernCord[2], xyzStationBernCordOut[0], xyzStationBernCordOut[1], xyzStationBernCordOut[2], ell);
+
+        // Print Bern station enu coordinates
+        System.out.println("Bern station enu coordinates, ecef reference:");
+        sf=String.format("e[m]: %.8f",enuStationBernCordOut[0]);  
+        System.out.println(sf);
+        sf=String.format("n[m]: %.8f",enuStationBernCordOut[1]);  
+        System.out.println(sf);
+        sf=String.format("u[m]: %.8f\n",enuStationBernCordOut[2]); 
+        System.out.println(sf);
+
+        // Compute Bern station ecef coordinates from enu, lla reference
+        System.out.println("Compute Bern station ecef coordinates from enu, lla reference...\n");
+        xyzStationBernCordOut = ENU.enu2ecef_llaRef(llaBernCord[0], llaBernCord[1], llaBernCord[2], enuStationBernCord[0], enuStationBernCord[1], enuStationBernCord[2], ell, true);
+
+        // Print Bern station ecef coordinates
+        System.out.println("Bern station ecef coordinates:");
+        sf=String.format("x[m]: %.8f",xyzStationBernCordOut[0]);  
+        System.out.println(sf);
+        sf=String.format("y[m]: %.8f",xyzStationBernCordOut[1]);  
+        System.out.println(sf);
+        sf=String.format("z[m]: %.8f\n",xyzStationBernCordOut[2]); 
+        System.out.println(sf);
+
+        // Write output into object atributes
+        enu_Bern_coordinates.xyzWrite(xyzStationBernCordOut[0], xyzStationBernCordOut[1], xyzStationBernCordOut[2]);
+
+        // Compute Bern station enu coordinates from ecef, lla reference
+        System.out.println("Compute Bern station enu coordinates from ecef, lla reference...\n");
+        enuStationBernCordOut = ECEF.ecef2enu_llaRef(llaBernCord[0], llaBernCord[1], llaBernCord[2], xyzStationBernCordOut[0], xyzStationBernCordOut[1], xyzStationBernCordOut[2], ell, true);
+
+        // Print Bern station enu coordinates
+        System.out.println("Bern station enu coordinates, lla reference:");
+        sf=String.format("e[m]: %.8f",enuStationBernCordOut[0]);  
+        System.out.println(sf);
+        sf=String.format("n[m]: %.8f",enuStationBernCordOut[1]);  
+        System.out.println(sf);
+        sf=String.format("u[m]: %.8f\n",enuStationBernCordOut[2]); 
+        System.out.println(sf);
     }
     
 }

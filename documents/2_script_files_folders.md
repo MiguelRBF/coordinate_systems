@@ -111,21 +111,26 @@ COORDINATE_SYSTEMS
     |
     |-coolArduinoMap3D
         |
-        |-ecef
-        |   |-ecef.h
-        |   |-ecef.cpp
+        |-coordinate_systems_example
+        |   |-coordinate_systems_example.ino
         |
-        |-ellipsoid
-        |   |-ellipsoid.h
-        |   |-ellipsoid.cpp
-        |
-        |-enu
-        |   |-enu.h
-        |   |-enu.cpp
-        |
-        |-lla
-            |-lla.h
-            |-lla.cpp
+        |-libraries
+            |
+            |-ecef
+            |   |-ecef.h
+            |   |-ecef.cpp
+            |
+            |-ellipsoid
+            |   |-ellipsoid.h
+            |   |-ellipsoid.cpp
+            |
+            |-enu
+            |   |-enu.h
+            |   |-enu.cpp
+            |
+            |-lla
+                |-lla.h
+                |-lla.cpp
 
 ```
 ## **2.1 files inside COORDINATE_SYSTEMS**
@@ -314,19 +319,24 @@ COORDINATE_SYSTEMS
     |
     |-coolArduinoMap3D
         |
-        |-ecef
-        |   |-ecef.h
-        |   |-ecef.cpp
+        |-coordinate_systems_example
+        |   |-coordinate_systems_example.ino
         |
-        |-ellipsoid
-        |   |-ellipsoid.h
-        |   |-ellipsoid.cpp
-        |
-        |-enu
-        |   |-enu.h
-        |   |-enu.cpp
-        |
-        |-lla
-            |-lla.h
-            |-lla.cpp
+        |-libraries
+            |
+            |-ecef
+            |   |-ecef.h
+            |   |-ecef.cpp
+            |
+            |-ellipsoid
+            |   |-ellipsoid.h
+            |   |-ellipsoid.cpp
+            |
+            |-enu
+            |   |-enu.h
+            |   |-enu.cpp
+            |
+            |-lla
+                |-lla.h
+                |-lla.cpp
 ```
