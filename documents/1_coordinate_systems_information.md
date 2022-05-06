@@ -50,7 +50,8 @@ Both coordinate systems share the **longitude** definition, but they differ in t
 The graticule on the ellipsoid is constructed in exactly the same way as on the sphere. The normal at a point on the surface of an ellipsoid does not pass through the centre, except for points on the equator or at the poles, but the definition of latitude remains unchanged as the angle between the normal and the equatorial plane. The terminology for latitude must be made more precise by distinguishing:
 
 - **Geodetic latitude**: the angle between the normal and the equatorial plane. The standard notation in English publications is $\phi$. This is the definition assumed when the word latitude is used without qualification. The definition must be accompanied with a specification of the ellipsoid.
-- **Geocentric latitude** (also known as spherical latitude, after the 3D polar angle): the angle between the radius (from centre to the point on the surface) and the equatorial plane. (Figure below). There is no standard notation, examples from various texts include: $\theta$, $\psi$, q, $\phi'$, $\phi_{c}$, $\phi_{g}$. This article uses $\theta$.
+
+- **Geocentric latitude** (also known as spherical latitude, after the 3D polar angle): the angle between the radius (from centre to the point on the surface) and the equatorial plane. (Figure below). There is no standard notation, examples from various texts include: θ, ψ, q, $\phi'$, $\phi_{c}$, $\phi_{g}$. This article uses θ.
 
 <br/>
 <p align="center">
@@ -77,9 +78,9 @@ The **geodetic** coordinate system is known to most as the **Latitude** and **Lo
 
 Since the longitude lines are not parallel, the horizontal distance for a degree of longitude depends on your location. Therefore, the geodetic location does not have intuitive understanding of distance that other coordinate systems have. However, the geodetic coordinate system is globally consistent and therefore is a good coordinate system for positioning high altitude and space-based platforms. [[**5**]](./5_list_references.md)
 
-In geodetic coordinates the Earth's surface is approximated by an ellipsoid and locations near the surface are described in terms of latitude, longitude  and height. The ellipsoid is completely parameterised by the semi-major axis **a** and the flattening **f**.
+In geodetic coordinates the Earth's surface is approximated by an ellipsoid and locations near the surface are described in terms of latitude, longitude  and height. The ellipsoid is completely parameterized by the semi-major axis **a** and the flattening **f**.
 
-### **1.4.1 WGS84 Elipsoidal model: World Geodetic System 1984**
+### **1.4.1 WGS84 Ellipsoidal model: World Geodetic System 1984**
 
 The Global Positioning System (GPS) uses the world geodetic system 1984 (WGS84) to determine the location of a point near the surface of the Earth.
 
@@ -99,7 +100,7 @@ The Global Positioning System (GPS) uses the world geodetic system 1984 (WGS84) 
 
  #### **1.4.1.2 WGS84 derived geometric constants**
 
-| Constant                   | Notation  | Value            | Aproximation      |
+| Constant                   | Notation  | Value            | Approximation     |
 |:---------------------------|:----------|:----------------:|:-----------------:|
 |Semi-minor axis             | b         |a·(1-f)           |6356752.3142 m     |
 |First eccentricity squared  | e^2       |(2-f)·f           |6.69437999014·10^-3|
@@ -153,3 +154,59 @@ Because the scene coordinate system assumes a flat earth, it is not a good coord
 The Universal Transverse Mercator (UTM) coordinate system is a geographic coordinate system which utilizes a conformal projection that preserves angles locally. This is achieved by breaking the entire globe into a sequence of small conformal projections. These local projections are called "grid zones" which are defined by a longitude "zone" (the earth is divided into 60 zones, each 6 degrees wide and number sequentially) and a latitude "band" (the earth is divided into 20 latitude bands, each 8 degrees wide and labeled with a lettering scheme). The horizontal location offsets within a given grid zone are referred to as the "Easting" and "Northing" and are generally measured in meters.
 
 The key advantage of the UTM coordinate system is that distances and angles can be computed using Euclidean geometry over short distances. This makes is very easy to compute distances and angles. And coordinate units are in meters, making the coordinates intuitive to interpret. However, the UTM projections suffer from ambiguities at the meeting of two grids zones and general distortions for large areas and distances. Although UTM could be used to position a plane or satellite, as it moved from one grid zone to another, the relative position will be prone to errors. [[**5**]](./5_list_references.md)
+
+## **1.8 Universal conversion between 2 orthogonal reference frames**
+
+The conversion between 2 orthogonal reference frames could be decomposed in 2 transformations:
+
+### **1.8.1 Translation of the coordinate system origin.**
+
+<br/>
+<p align="center">
+    <img src="./images/translation.png">
+</p>
+<br/>
+
+The coordinates of an arbitrary point (P) in the coordinate system 1 (O1) can be expressed as a combination of a vector joining both reference systems origins and the coordinates in the reference system 2 (O2):
+
+- **O1_P = O1_O2 + O2_P**
+
+Were:
+
+- **O1_P** is the vector from the origin of the reference frame 1 to the point P.
+
+- **O1_O2** is the vector from the origin of the reference frame 1 to the point the origin of the reference frame 2.
+
+- **O1_P** is the vector from the origin of the reference frame 2 to the point P.
+
+As algebra declare, for any of this combinations:
+
+**O1_O2 = -O1_O2**
+
+So we can also say:
+
+- **O2_P = O2_O1 + O1_P**
+
+This is very useful to get other kind of transformations.
+
+<br/>
+
+### **1.8.2 Rotation of the coordinate system into final orientation.**
+
+<br/>
+<p align="center">
+    <img src="./images/rotation.png">
+</p>
+<br/>
+
+The coordinates of an arbitrary point (P) in the coordinate system 1 (O1) can be expressed as a multiplication of the coordinates in the reference system 2 (O2) and a rotation matrix (R[θ]):
+
+O1_P = R[θ] * O2_P
+
+R[θ] can be expressed with the following formulation:
+
+```
+        [ i21 ]  [ i2x1 i2y1 i2z1 ]
+R[θ] =  [ j21 ] =[ j2x1 j2y1 j2z1 ]
+        [ k21 ]  [ k2x1 k2y1 k2z1 ]
+```

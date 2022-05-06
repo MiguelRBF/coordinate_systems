@@ -154,6 +154,22 @@ author: De © Hans Hillewaert, CC BY-SA 4.0, https://commons.wikimedia.org/w/ind
 
 ---
 
+rotation.png
+
+Reference date: 06/05/2022
+
+author: Copyright (c) 2022 Miguel Lázaro
+
+---
+
+translation.png
+
+Reference date: 06/05/2022
+
+author: Copyright (c) 2022 Miguel Lázaro
+
+---
+
 Utm-zones.jpg
 
 https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffacilitageo.com%2Fwp-content%2Fuploads%2F2021%2F06%2F20210704-papiros-a-questao-a-1024x512.jpg&f=1&nofb=1
