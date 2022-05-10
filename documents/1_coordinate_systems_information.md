@@ -159,7 +159,7 @@ The key advantage of the UTM coordinate system is that distances and angles can 
 
 The conversion between 2 orthogonal reference frames could be decomposed in 2 transformations:
 
-### **1.8.1 Translation of the coordinate system origin.**
+### **1.8.1 Translation of the coordinate system origin**
 
 <br/>
 <p align="center">
@@ -191,7 +191,7 @@ This is very useful to get other kind of transformations.
 
 <br/>
 
-### **1.8.2 Rotation of the coordinate system into final orientation.**
+### **1.8.2 Rotation of the coordinate system into final orientation**
 
 <br/>
 <p align="center">
@@ -201,7 +201,7 @@ This is very useful to get other kind of transformations.
 
 The coordinates of an arbitrary point (P) in the coordinate system 1 (O1) can be expressed as a multiplication of the coordinates in the reference system 2 (O2) and a rotation matrix (R[θ]):
 
-O1_P = R[θ] * O2_P
+- **O1_P = R[θ] * O2_P**
 
 R[θ] can be expressed with the following formulation:
 
@@ -210,3 +210,26 @@ R[θ] can be expressed with the following formulation:
 R[θ] =  [ j21 ] =[ j2x1 j2y1 j2z1 ]
         [ k21 ]  [ k2x1 k2y1 k2z1 ]
 ```
+Were i, j and k are the unitary vector for x, y and z axis.
+
+- i2 represent the x axis unitary vector of the coordinate system 2.
+- i2x represent the x axis unitary vector x component of the coordinate system 2.
+- i2x1 represent the x axis unitary vector x component of the coordinate system 2 with coordinate system 1 as reference. 
+
+As rotation matrix are orthogonal we can say:
+
+inverse(R[θ]) = transpose(R[θ])
+
+```
+                [ i21 ]  [ i2x1 j2x1 k2x1 ]
+inverse(R[θ]) = [ j21 ] =[ i2y1 j2y1 k2y1 ]
+                [ k21 ]  [ i2z1 j2z1 k2z1 ]
+```
+
+### **1.8.3 Rotation and translation of the coordinate system into final orientation**
+
+- **Oi_P = R[θ] * O2_P**
+
+- **O1_P = O1_Oi + Oi_P**
+
+- **O1_P = O1_Oi + R[θ] * O2_P**
