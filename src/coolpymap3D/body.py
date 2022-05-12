@@ -4,7 +4,7 @@
 # Created by:       MiguelRBF
 #--------------------------------------------
 '''
-This module was created to transforms from body frame to others.
+This module was created to transforms from body reference frame to others.
 '''
 
 #### IMPORT STANDARD LIBRARIES ####
@@ -88,15 +88,34 @@ def body2ecef(
 
     '''  
 
-    # Get rotation matrix R[θ]
-    R = np.array([ib[0],ib[1],ib[2]],
-                 [jb[0],jb[1],jb[2]],
-                 [kb[0],kb[1],kb[2]])
+    # Get the rotation matrix R[θ]
+    R = np.array([ib[0],jb[0],kb[0],
+                  ib[1],jb[1],kb[1],
+                  ib[2],jb[2],kb[2]], np.float64)
+    R = R.reshape(3,3)
 
-    # Compute the coordinates in the new reference frame (ecef)
-    xyz = np.array(x0b, y0b, z0b) + R*np.array(xb, yb, zb)
+    # Get the length of input target coordinates array
+    inputShape = xb.shape
 
-    return xyz[0], xyz[1], xyz[2]
+    # Get body coordinate system origin
+    body_origin = np.array([x0b[0], y0b[0], z0b[0]])
+
+    # Define the output np array shape
+    xyz = np.zeros((inputShape[0], 3), np.float64)
+
+    # Loop for all the coordinates given as input
+    for nCoor in range(inputShape[0]):
+
+        # Get the body coordinates np array
+        bodyCoor = np.array([xb[nCoor], yb[nCoor], zb[nCoor]])
+
+        # Get the coordinates after rotation
+        rotCoor = np.matmul(R, bodyCoor)
+
+        # Compute the coordinates in the new reference frame (ecef)
+        xyz[nCoor] = body_origin + rotCoor
+
+    return xyz
 
 ####  ####
 

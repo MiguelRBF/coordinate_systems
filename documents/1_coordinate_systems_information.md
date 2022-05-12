@@ -199,31 +199,30 @@ This is very useful to get other kind of transformations.
 </p>
 <br/>
 
-The coordinates of an arbitrary point (P) in the coordinate system 1 (O1) can be expressed as a multiplication of the coordinates in the reference system 2 (O2) and a rotation matrix (R[θ]):
+The coordinates of an arbitrary point (P) in the coordinate system 1 (O1) can be expressed as the multiplication of a rotation matrix (R[θ]) by a coordinates vector in the reference system 2 (O2):
 
 - **O1_P = R[θ] * O2_P**
 
 R[θ] can be expressed with the following formulation:
 
 ```
-        [ i21 ]  [ i2x1 i2y1 i2z1 ]
-R[θ] =  [ j21 ] =[ j2x1 j2y1 j2z1 ]
-        [ k21 ]  [ k2x1 k2y1 k2z1 ]
+                         [ i2x1 j2x1 k2x1 ]
+R[θ] = [ i21 j21 k21 ] = [ i2y1 j2y1 k2y1 ]
+                         [ i2z1 j2z1 k2z1 ]
 ```
 Were i, j and k are the unitary vector for x, y and z axis.
 
-- i2 represent the x axis unitary vector of the coordinate system 2.
-- i2x represent the x axis unitary vector x component of the coordinate system 2.
-- i2x1 represent the x axis unitary vector x component of the coordinate system 2 with coordinate system 1 as reference. 
+- i21 represent the x axis unitary vector of the coordinate system 2. Reference coordinate system 1.
+- i2x1 represent the x component of x axis unitary vector of the coordinate system 2. Reference coordinate system 1. 
 
 As rotation matrix are orthogonal we can say:
 
 inverse(R[θ]) = transpose(R[θ])
 
 ```
-                [ i21 ]  [ i2x1 j2x1 k2x1 ]
-inverse(R[θ]) = [ j21 ] =[ i2y1 j2y1 k2y1 ]
-                [ k21 ]  [ i2z1 j2z1 k2z1 ]
+                [ i21 ]    [ i2x1 i2y1 i2z1 ]
+inverse(R[θ]) = [ j21 ] =  [ j2x1 j2y1 j2z1 ]
+                [ k21 ]    [ k2x1 k2y1 k2z1 ]
 ```
 
 ### **1.8.3 Rotation and translation of the coordinate system into final orientation**
