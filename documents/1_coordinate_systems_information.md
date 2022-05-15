@@ -157,6 +157,8 @@ The key advantage of the UTM coordinate system is that distances and angles can 
 
 ## **1.8 Universal conversion between 2 orthogonal reference frames**
 
+Let's say that the ECEF coordinate system is the coordinates system 1. The Body coordinate system will be the coordinate system 2.
+
 The conversion between 2 orthogonal reference frames could be decomposed in 2 transformations:
 
 ### **1.8.1 Translation of the coordinate system origin**
@@ -227,8 +229,18 @@ inverse(R[θ]) = [ j21 ] =  [ j2x1 j2y1 j2z1 ]
 
 ### **1.8.3 Rotation and translation of the coordinate system into final orientation**
 
+Taking the equations from both, translation and rotation, we can get the equation to get the ECEF coordinates from Body as combination of both transformations:  
+
 - **Oi_P = R[θ] * O2_P**
 
 - **O1_P = O1_Oi + Oi_P**
 
 - **O1_P = O1_Oi + R[θ] * O2_P**
+
+The inverse equation to get the coordinates in body reference frame would be:
+
+- **O1_P = O1_Oi + R[θ] * O2_P**
+
+- **O1_P-O1_Oi = R[θ] * O2_P**
+
+- **O2_P = inverse(R[θ]) * (O1_P-O1_Oi)**

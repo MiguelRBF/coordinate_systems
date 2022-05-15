@@ -13,10 +13,14 @@
 
 #include "lla.h"
 
+void multiplyMatVec(long double mat[3][3], long double vec[3], long double res[3]);
+
 void ecef2lla(long double xyz[], Ellipsoid ell, bool deg, long double lla[]);
 
 void ecef2enu_ecefRef(long double refXYZ[], long double xyz[], Ellipsoid ell, long double enu[]);
 
 void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, bool deg, long double enu[]);
+
+void ecef2body(long double xyz[3], long double xyzOb[3], long double ijkb[3][3], long double xyzb[3]);
 
 #endif /* ECEF_H */

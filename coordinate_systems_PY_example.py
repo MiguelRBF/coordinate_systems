@@ -23,6 +23,7 @@ from src.coolPyMap3D.ecef import ecef2lla, ecef2enu_ecefRef, ecef2enu_llaRef
 from src.coolPyMap3D.lla import lla2ecef
 from src.coolPyMap3D.enu import enu2ecef_ecefRef, enu2ecef_llaRef
 from src.coolPyMap3D.body import body2ecef
+from src.coolPyMap3D.ecef import ecef2body
 
 ####  ####
 
@@ -131,28 +132,32 @@ def example2():
     # y0b = 0
     # z0b = 0
     # Body coordinate system orientation (ecef reference)
-    # ib = [1, 0, 0]
-    # jb = [0, 1, 0]
+    # ib = [0, 1, 0]
+    # jb = [1, 0, 0]
     # kb = [0, 0, 1]
 
     # The target coordinates [m] in body reference frame are the following:
-    # xb = 10
-    # yb = 0
-    # zb = 0
+    # xb1 = 10
+    # yb1 = 0
+    # zb1 = 0
+    # xb2 = 10
+    # yb2 = 0
+    # zb2 = 0
 
-    x0b = np.array([26600000.])
-    y0b = np.array([0.])
-    z0b = np.array([0.])
-    ib = np.array([1., 0., 0.])
-    jb = np.array([0., 1., 0.])
-    kb = np.array([0., 0., 1.])
+    xyzOb = np.array([26600000., 0., 0.])
+    ijkb = np.array([[0., 1., 0.],
+                     [1., 0., 0.],
+                     [0., 0., 1.]])
+    # jb = np.array([1., 0., 0.])
+    # kb = np.array([0., 0., 1.])
     xb = np.array([10., 100.0])
     yb = np.array([0., 0.])
     zb = np.array([0., 0.])
 
+    print(f'EXAMPLE 1')
     print(f'Get the coordinates in ECEF from body reference system.')
     # Compute the coordinates in ecef reference frame
-    xyz = body2ecef(xb, yb, zb, x0b, y0b, z0b, ib, jb, kb)
+    xyz = body2ecef(xb, yb, zb, xyzOb, ijkb)
 
     # Print all the ecef coordinates from body reference
     for nCoor in range(xb.shape[0]):
@@ -161,6 +166,46 @@ def example2():
         print(f'y:    {xyz[nCoor][1]}')
         print(f'z:    {xyz[nCoor][2]}')
         print()
+
+    # Suppose a body in the space in the following position and orientation:
+    # Body coordinate system position [m] (ecef reference)
+    # x0b = 26 600 000
+    # y0b = 0
+    # z0b = 0
+    # Body coordinate system orientation (ecef reference)
+    # ib = [0, 1, 0]
+    # jb = [1, 0, 0]
+    # kb = [0, 0, 1]
+
+    # The target coordinates [m] in ecef reference frame are the following:
+    # xb1 = 26600000
+    # yb1 = 10
+    # zb1 = 0
+    # xb2 = 26600000
+    # yb2 = 100
+    # zb2 = 0
+
+    xyzOb = np.array([26600000., 0., 0.])
+    ijkb = np.array([[0., 1., 0.],
+                     [1., 0., 0.],
+                     [0., 0., 1.]])
+    x = np.array([26600000., 26600000.])
+    y = np.array([10., 100.])
+    z = np.array([0., 0.])
+
+    print(f'EXAMPLE 2')
+    print(f'Get the coordinates in body from ECEF reference system.')
+    # Compute the coordinates in body reference frame
+    xyzb = ecef2body(x, y, z, xyzOb, ijkb)
+
+    # Print all the ecef coordinates from body reference
+    for nCoor in range(xb.shape[0]):
+        print(f'The coordinates number {nCoor} is:')
+        print(f'x:    {xyzb[nCoor][0]}')
+        print(f'y:    {xyzb[nCoor][1]}')
+        print(f'z:    {xyzb[nCoor][2]}')
+        print()
+    
 
 ####  ####
 

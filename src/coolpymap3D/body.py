@@ -39,12 +39,8 @@ def body2ecef(
     xb: np.float64,
     yb: np.float64,
     zb: np.float64,
-    x0b: np.float64,
-    y0b: np.float64,
-    z0b: np.float64,
-    ib: np.float64,
-    jb: np.float64,
-    kb: np.float64,
+    xyzOb: np.float64,
+    ijkb: np.float64,
     ):
     
     '''
@@ -89,16 +85,10 @@ def body2ecef(
     '''  
 
     # Get the rotation matrix R[θ]
-    R = np.array([ib[0],jb[0],kb[0],
-                  ib[1],jb[1],kb[1],
-                  ib[2],jb[2],kb[2]], np.float64)
-    R = R.reshape(3,3)
+    R = ijkb
 
     # Get the length of input target coordinates array
     inputShape = xb.shape
-
-    # Get body coordinate system origin
-    body_origin = np.array([x0b[0], y0b[0], z0b[0]])
 
     # Define the output np array shape
     xyz = np.zeros((inputShape[0], 3), np.float64)
@@ -113,7 +103,7 @@ def body2ecef(
         rotCoor = np.matmul(R, bodyCoor)
 
         # Compute the coordinates in the new reference frame (ecef)
-        xyz[nCoor] = body_origin + rotCoor
+        xyz[nCoor] = xyzOb + rotCoor
 
     return xyz
 

@@ -33,10 +33,9 @@ from .lla import lla2ecef
 __all__ = [
     "ecef2lla",
     "ecef2enu_ecefRef",
-    "ecef2enu_llaRef"
+    "ecef2enu_llaRef",
+    "ecef2body"
 ]
-
-####  ####
 
 #### FUNCTIONS DEFINITION ####
 
@@ -244,6 +243,79 @@ def ecef2enu_llaRef(
     u = np.cos(refLat)*np.cos(refLong)*(x-refX) + np.cos(refLat)*np.sin(refLong)*(y-refY) + np.sin(refLat)*(z-refZ)
 
     return e, n, u
+
+def ecef2body(
+    x: np.float64,
+    y: np.float64,
+    z: np.float64,
+    xyzOb: np.float64,
+    ijkb: np.float64
+    ):
+    
+    '''
+    This function was created to change between ECEF (x, y, z) coordinate system 
+    to Body coordinate system.
+
+    np arrays can be given as inputs.
+
+    Parameters
+    ----------
+    x
+        target x ecef coordinate (meters)
+    y
+        target y ecef coordinate (meters)
+    z
+        target z ecef coordinate (meters)
+
+    xOb = xyzOb[0]
+        x body coordinate origin (ecef reference, meters)
+    yOb = xyzOb[1]
+        y body coordinate origin (ecef reference, meters)
+    zOb = xyzOb[2]
+        z body coordinate origin (ecef reference, meters)
+
+    ib = ijkb[:][0]
+        x body axis unitary vector (ecef reference)
+    jb = ijkb[:][1]
+        y body axis unitary vector (ecef reference)
+    kb = ijkb[:][2]
+        z body axis unitary vector (ecef reference)
+
+
+    Returns
+    -------
+    xb = xyzb[0]
+        target x Body coordinate (meters)
+    yb = xyzb[1]
+        target y Body coordinate (meters)
+    zb = xyzb[2]
+        target z Body coordinate (meters)
+
+    Ob_P = inverse(R[θ]) * (Oecef_P-Oecef_Ob)
+
+    '''  
+
+    # Get the rotation matrix R[θ]
+    R = ijkb
+    # Transpose the rotation matrix
+    R = np.transpose(R)
+
+    # Get the length of input target coordinates array
+    inputShape = x.shape
+
+    # Define the output np array shape
+    xyzb = np.zeros((inputShape[0], 3), np.float64)
+
+    # Loop for all the coordinates given as input
+    for nCoor in range(inputShape[0]):
+
+        # Get the ecef coordinates np array
+        ecefCoor = np.array([x[nCoor], y[nCoor], z[nCoor]], np.float64)
+
+        # Compute the coordinates in the new reference frame (ecef)
+        xyzb[nCoor] = np.matmul(R, ecefCoor-xyzOb)
+
+    return xyzb
 
 ####  ####
 

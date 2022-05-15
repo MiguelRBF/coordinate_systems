@@ -7,10 +7,37 @@
 
 #include "ecef.h"
 
+#include <cstdio>
 #include <cmath>
 #include <stdlib.h>
 
 using namespace std;
+
+// --- Matrix multiplication function ---
+
+void multiplyMatVec(long double mat[3][3], long double vec[3], long double res[3]){
+	/*
+	This function was created to manage the multiplication
+	between 1 matrix (3x3) and a vector (3).
+
+	Returns a vector res (3).
+	*/
+
+	// Set to zero all res components
+	res[0] = 0;
+	res[1] = 0;
+	res[2] = 0;
+
+    int i, j;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+        	res[i] = res[i] + mat[i][j] * vec[j];
+        }
+    }
+}
+
+
+// ---  ---
 
 void ecef2lla(long double xyz[], Ellipsoid ell, bool deg, long double lla[]){
 
@@ -213,5 +240,63 @@ void ecef2enu_llaRef(long double refLLA[], long double xyz[], Ellipsoid ell, boo
 	enu[0] = -sin(refLon)*(x-refX) + cos(refLon)*(y-refY);
 	enu[1] = -sin(refLat)*cos(refLon)*(x-refX) - sin(refLat)*sin(refLon)*(y-refY) + cos(refLat)*(z-refZ);
 	enu[2] = cos(refLat)*cos(refLon)*(x-refX) + cos(refLat)*sin(refLon)*(y-refY) + sin(refLat)*(z-refZ);
+
+}
+
+
+void ecef2body(long double xyz[3], long double xyzOb[3], long double ijkb[3][3], long double xyzb[3]){
+	/*
+	This function was created to change between ecef
+	to Body coordinate system.
+
+	Parameters
+	----------
+	x
+    	target x ecef coordinate (meters)
+	y
+    	target y ecef coordinate (meters)
+	z
+    	target z ecef coordinate (meters)
+
+	x0b
+    	x body coordinate origin (ecef reference, meters)
+	y0b
+    	y body coordinate origin (ecef reference, meters)
+	z0b
+    	z body coordinate origin (ecef reference, meters)
+
+	ib -> ijkb[:][0]
+    	x body axis unitary vector (ecef reference, meters)
+	jb -> ijkb[:][1]
+    	y body axis unitary vector (ecef reference, meters)
+	kb -> ijkb[:][2]
+    	z body axis unitary vector (ecef reference, meters)
+
+	Returns
+	-------
+	xb = xyzb[0]
+    	target x Body coordinate (meters)
+	yb = xyzb[1]
+    	target y Body coordinate (meters)
+	zb = xyzb[2]
+    	target z Body coordinate (meters)
+
+	Ob_P = inverse(R[θ]) * (Oecef_P-Oecef_Ob) = Rinv * diff_OeP_OeOb = Rinv * (xyz - xyzOb)
+	 */
+
+	// Define inverse(R[θ])
+	long double Rinv[3][3] = {{ijkb[0][0], ijkb[1][0], ijkb[2][0]},
+							 {ijkb[0][1], ijkb[1][1], ijkb[2][1]},
+							 {ijkb[0][2], ijkb[1][2], ijkb[2][2]}};
+
+	//  Get the difference between OeP (P coordinates in ecef reference) and
+	// OeOb (vector from ecef origin to body origin).
+	long double diff_OeP_OeOb[3];
+	diff_OeP_OeOb[0] = xyz[0] - xyzOb[0];
+	diff_OeP_OeOb[1] = xyz[1] - xyzOb[1];
+	diff_OeP_OeOb[2] = xyz[2] - xyzOb[2];
+
+	// Get the final coordinates
+	multiplyMatVec(Rinv, diff_OeP_OeOb, xyzb);
 
 }

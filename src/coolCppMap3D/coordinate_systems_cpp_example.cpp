@@ -23,6 +23,10 @@ using namespace std;
 
 int main(){
 
+	// --- EXAMPLE 1 ---
+
+	printf("--- EXAMPLE 1 ---\n\n");
+
 	// Bern coordinates (x, y, z)
 	long double xyz[] = {4325481.828902193,565424.2388267403,4638228.339585699};
 
@@ -85,8 +89,33 @@ int main(){
 
 	// Print output
 	printf("Bern enu coordinates from xyz: lla reference\n");
-	printf("[e,n,u] = [%.12Lf,%.12Lf,%.12Lf]\n",enu[0],enu[1],enu[2]);
+	printf("[e,n,u] = [%.12Lf,%.12Lf,%.12Lf]\n\n",enu[0],enu[1],enu[2]);
 
+	// ---  ---
+
+	// --- EXAMPLE 2 ---
+	printf("--- EXAMPLE 2 ---\n\n");
+
+	// Define the rotation matrix R[θ]=ijkb
+	long double ijkb[3][3] = {{1., 0., 0.},
+						{0., 1., 0.},
+						{0., 0., 1.}};
+
+	// Define the target ecef coordinates
+	long double tar_xyz[3] = {26600000., 10., 0.};
+
+	// define the body origin coordinates
+	long double xyzOb[3] = {26600000., 0., 0.};
+
+	// Initialize target body coordinates
+	long double xyzb[3] = {0, 0, 0};
+
+	ecef2body(tar_xyz, xyzOb, ijkb, xyzb);
+
+	printf("Body coordinates from ecef reference\n");
+	printf("xyzb[x,y,z] = [%.12Lf,%.12Lf,%.12Lf]\n\n",xyzb[0],xyzb[1],xyzb[2]);
+
+	// ---  ---
 
     return 0;
 }
