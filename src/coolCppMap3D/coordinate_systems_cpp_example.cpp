@@ -20,6 +20,7 @@ using namespace std;
 #include "ecef.h"
 #include "lla.h"
 #include "enu.h"
+#include "body.h"
 
 int main(){
 
@@ -108,12 +109,20 @@ int main(){
 	long double xyzOb[3] = {26600000., 0., 0.};
 
 	// Initialize target body coordinates
-	long double xyzb[3] = {0, 0, 0};
+	long double tar_xyzb[3] = {0, 0, 0};
 
-	ecef2body(tar_xyz, xyzOb, ijkb, xyzb);
+	// Compute the coordinates in body reference frame
+	ecef2body(tar_xyz, xyzOb, ijkb, tar_xyzb);
 
-	printf("Body coordinates from ecef reference\n");
-	printf("xyzb[x,y,z] = [%.12Lf,%.12Lf,%.12Lf]\n\n",xyzb[0],xyzb[1],xyzb[2]);
+	printf("Body coordinates from ecef reference frame\n");
+	printf("xyzb[x,y,z] = [%.12Lf,%.12Lf,%.12Lf]\n\n",tar_xyzb[0],tar_xyzb[1],tar_xyzb[2]);
+
+	// Roll back the coordinates. Compute the coordinates in ecef reference frame
+	body2ecef(tar_xyzb, xyzOb, ijkb, tar_xyz);
+
+	printf("Ecef coordinates from body reference frame\n");
+	printf("xyz[x,y,z] = [%.12Lf,%.12Lf,%.12Lf]\n\n",tar_xyz[0],tar_xyz[1],tar_xyz[2]);
+
 
 	// ---  ---
 

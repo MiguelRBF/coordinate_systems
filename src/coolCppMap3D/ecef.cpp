@@ -13,32 +13,6 @@
 
 using namespace std;
 
-// --- Matrix multiplication function ---
-
-void multiplyMatVec(long double mat[3][3], long double vec[3], long double res[3]){
-	/*
-	This function was created to manage the multiplication
-	between 1 matrix (3x3) and a vector (3).
-
-	Returns a vector res (3).
-	*/
-
-	// Set to zero all res components
-	res[0] = 0;
-	res[1] = 0;
-	res[2] = 0;
-
-    int i, j;
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-        	res[i] = res[i] + mat[i][j] * vec[j];
-        }
-    }
-}
-
-
-// ---  ---
-
 void ecef2lla(long double xyz[], Ellipsoid ell, bool deg, long double lla[]){
 
 	/*
@@ -251,25 +225,25 @@ void ecef2body(long double xyz[3], long double xyzOb[3], long double ijkb[3][3],
 
 	Parameters
 	----------
-	x
+	x = xyz[0]
     	target x ecef coordinate (meters)
-	y
+	y = xyz[1]
     	target y ecef coordinate (meters)
-	z
+	z = xyz[1]
     	target z ecef coordinate (meters)
 
-	x0b
+	xOb = xyzOb[0]
     	x body coordinate origin (ecef reference, meters)
-	y0b
+	yOb = xyzOb[1]
     	y body coordinate origin (ecef reference, meters)
-	z0b
+	zOb = xyzOb[2]
     	z body coordinate origin (ecef reference, meters)
 
-	ib -> ijkb[:][0]
+	ib = ijkb[:][0]
     	x body axis unitary vector (ecef reference, meters)
-	jb -> ijkb[:][1]
+	jb = ijkb[:][1]
     	y body axis unitary vector (ecef reference, meters)
-	kb -> ijkb[:][2]
+	kb = ijkb[:][2]
     	z body axis unitary vector (ecef reference, meters)
 
 	Returns
@@ -296,7 +270,7 @@ void ecef2body(long double xyz[3], long double xyzOb[3], long double ijkb[3][3],
 	diff_OeP_OeOb[1] = xyz[1] - xyzOb[1];
 	diff_OeP_OeOb[2] = xyz[2] - xyzOb[2];
 
-	// Get the final coordinates
+	// Get the final coordinates in body reference
 	multiplyMatVec(Rinv, diff_OeP_OeOb, xyzb);
 
 }

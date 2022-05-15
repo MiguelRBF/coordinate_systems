@@ -13,7 +13,7 @@
 
 #include "lla.h"
 
-void multiplyMatVec(long double mat[3][3], long double vec[3], long double res[3]);
+#include "multiplyMatVec.h"
 
 void ecef2lla(long double xyz[], Ellipsoid ell, bool deg, long double lla[]);
 
