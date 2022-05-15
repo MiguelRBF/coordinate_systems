@@ -212,3 +212,60 @@ void ecef2enu_llaRef(double refLLA[], double xyz[], Ellipsoid ell, bool deg, dou
 	enu[2] = cos(refLat)*cos(refLon)*(x-refX) + cos(refLat)*sin(refLon)*(y-refY) + sin(refLat)*(z-refZ);
 
 }
+
+void ecef2body(double xyz[3], double xyzOb[3], double ijkb[3][3], double xyzb[3]){
+	/*
+	This function was created to change between ecef
+	to Body coordinate system.
+
+	Parameters
+	----------
+	x = xyz[0]
+    	target x ecef coordinate (meters)
+	y = xyz[1]
+    	target y ecef coordinate (meters)
+	z = xyz[1]
+    	target z ecef coordinate (meters)
+
+	xOb = xyzOb[0]
+    	x body coordinate origin (ecef reference, meters)
+	yOb = xyzOb[1]
+    	y body coordinate origin (ecef reference, meters)
+	zOb = xyzOb[2]
+    	z body coordinate origin (ecef reference, meters)
+
+	ib = ijkb[:][0]
+    	x body axis unitary vector (ecef reference, meters)
+	jb = ijkb[:][1]
+    	y body axis unitary vector (ecef reference, meters)
+	kb = ijkb[:][2]
+    	z body axis unitary vector (ecef reference, meters)
+
+	Returns
+	-------
+	xb = xyzb[0]
+    	target x Body coordinate (meters)
+	yb = xyzb[1]
+    	target y Body coordinate (meters)
+	zb = xyzb[2]
+    	target z Body coordinate (meters)
+
+	Ob_P = inverse(R[θ]) * (Oecef_P-Oecef_Ob) = Rinv * diff_OeP_OeOb = Rinv * (xyz - xyzOb)
+	 */
+
+	// Define inverse(R[θ])
+	double Rinv[3][3] = {{ijkb[0][0], ijkb[1][0], ijkb[2][0]},
+						 {ijkb[0][1], ijkb[1][1], ijkb[2][1]},
+						 {ijkb[0][2], ijkb[1][2], ijkb[2][2]}};
+
+	//  Get the difference between OeP (P coordinates in ecef reference) and
+	// OeOb (vector from ecef origin to body origin).
+	double diff_OeP_OeOb[3];
+	diff_OeP_OeOb[0] = xyz[0] - xyzOb[0];
+	diff_OeP_OeOb[1] = xyz[1] - xyzOb[1];
+	diff_OeP_OeOb[2] = xyz[2] - xyzOb[2];
+
+	// Get the final coordinates in body reference
+	multiplyMatVec(Rinv, diff_OeP_OeOb, xyzb);
+
+}

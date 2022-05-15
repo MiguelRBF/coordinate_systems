@@ -36,6 +36,6 @@ The following index show the information/scripts inside the repository:
 
 This github repository was created with 2 main goals:
 
-- Helping all the people to understand the different coordinate systems.
+- Helping all the people to understand the different coordinate systems (I include myself).
 
 - To be a "Rosetta Stone" to understand different programming languages.

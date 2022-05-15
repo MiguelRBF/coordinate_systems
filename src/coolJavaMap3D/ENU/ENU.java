@@ -14,7 +14,7 @@ import ECEF.ECEF;
 
 public class ENU {
 
-    // --- Class atributes ---
+    // --- Class attributes ---
     
     // Input e
     public double atri_e;
@@ -41,7 +41,7 @@ public class ENU {
     // Class constructor
     public ENU(double e_coordinate, double n_coordinate, double u_coordinate, Ellipsoid ellipsoid, boolean degrees){
 
-        // Define x , y, z object atributes coordinates
+        // Define x , y, z object attributes coordinates
         atri_e = e_coordinate;
         atri_n = n_coordinate;
         atri_u = u_coordinate;
@@ -184,10 +184,10 @@ public class ENU {
     // Define xyzWrite method
     public void xyzWrite(double x_coordinate, double y_coordinate, double z_coordinate){
         /*
-        Method to write output coordinates into the object atributes
+        Method to write output coordinates into the object attributes
         */
 
-        // Define x , y, z object atributes coordinates
+        // Define x , y, z object attributes coordinates
         atri_x = x_coordinate;
         atri_y = y_coordinate;
         atri_z = z_coordinate;

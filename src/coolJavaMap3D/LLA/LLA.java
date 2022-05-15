@@ -17,7 +17,7 @@ import ellipsoidDefinition.Ellipsoid;
 
 public class LLA {
 
-    // --- Class atributes ---
+    // --- Class attributes ---
     // Input latitude
     public double atri_lat;
     // Input longitude
@@ -120,10 +120,10 @@ public class LLA {
     // Define xyzWrite method
     public void xyzWrite(double x_coordinate, double y_coordinate, double z_coordinate){
         /*
-        Method to write output coordinates into the object atributes
+        Method to write output coordinates into the object attributes
         */
 
-        // Define x , y, z object atributes coordinates
+        // Define x , y, z object attributes coordinates
         atri_x = x_coordinate;
         atri_y = y_coordinate;
         atri_z = z_coordinate;

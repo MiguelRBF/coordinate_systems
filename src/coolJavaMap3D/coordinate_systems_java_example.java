@@ -1,4 +1,4 @@
-// --- CORDINATE SYSTEMS ---
+// --- COORDINATE SYSTEMS ---
 //--------------------------------------------
 // Module name:      coordinate_systems_java_example.java
 // Created by:       MiguelRBF
@@ -8,14 +8,17 @@
 This module was created to manage the change between coordinate systems
 */
 
+// Import used packages
 import ellipsoidDefinition.Ellipsoid;
 import LLA.LLA;
 import ECEF.ECEF;
 import ENU.ENU;
+import BODY.BODY;
 
 public class coordinate_systems_java_example {
 
-    // --- Class atributes ---
+    // --- Class attributes ---
+    // - EXAMPLE 1 -
     // Define the ellipsoid model to be used
     static public String model = "wgs84";
 
@@ -27,7 +30,7 @@ public class coordinate_systems_java_example {
     static public double[] xyzBernCord = new double[]{4325481.828902, 565424.238826, 4638228.339585};
     static public double[] xyzBernCordOut = new double[]{0.0, 0.0, 0.0};
 
-    // Supose a reference GNSS station in Bern with and ENU error of:
+    // Suppose a reference GNSS station in Bern with and ENU error of:
     // E=1.0m , N=0.798654m and U=1.6543m
     // Use as reference the Bern position
 
@@ -35,10 +38,31 @@ public class coordinate_systems_java_example {
     static public double[] enuStationBernCord = new double[]{1.0, 0.798654, 1.6543};
     static public double[] enuStationBernCordOut = new double[]{0.0, 0.0, 0.0};
     static public double[] xyzStationBernCordOut = new double[]{0.0, 0.0, 0.0};
+    // -  -
+
+    // - EXAMPLE 2 -
+
+    // Define the rotation matrix R[θ]=ijkb
+	static public double[][] ijkb = new double[][]{{0., 1., 0.},
+                                                   {1., 0., 0.},
+                                                   {0., 0., 1.}};
+
+    // Define the target ecef coordinates
+	static public double[] tar_xyz = new double[]{26600000., 10., 0.};
+
+	// Define the body origin coordinates
+	static public double[] xyzOb = new double[]{26600000., 0., 0.};
+
+	// Initialize target body coordinates
+	static public double[] tar_xyzb = new double[]{0, 0, 0};
+
+    // -  -
     // ---  ---
 
     // Create main method
     public static void main(String[] args){
+
+        // - EXAMPLE 1 -
 
         // Create ellipsoid object
         Ellipsoid ell = new Ellipsoid(model);
@@ -61,11 +85,7 @@ public class coordinate_systems_java_example {
 
         // Print Bern geodetic (WGS84) coordinates
         System.out.println("Bern geodetic (WGS84) coordinates:");
-        sf=String.format("Latitude[°]: %.8f",llaBernCord[0]);  
-        System.out.println(sf);
-        sf=String.format("Longitude[°]: %.8f",llaBernCord[1]);  
-        System.out.println(sf);
-        sf=String.format("Altitude[m]: %.8f\n",llaBernCord[2]); 
+        sf=String.format("WGS84[°; °; m]: [%.8f; %.8f; %.8f]",llaBernCord[0],llaBernCord[1],llaBernCord[2]);  
         System.out.println(sf);
 
         // Compute Bern ecef coordinates from geodetic WGS84
@@ -74,23 +94,15 @@ public class coordinate_systems_java_example {
 
         // Print Bern ecef coordinates
         System.out.println("Bern ecef coordinates:");
-        sf=String.format("x[m]: %.8f",xyzBernCordOut[0]);  
-        System.out.println(sf);
-        sf=String.format("y[m]: %.8f",xyzBernCordOut[1]);  
-        System.out.println(sf);
-        sf=String.format("z[m]: %.8f\n",xyzBernCordOut[2]); 
+        sf=String.format("xyz[m]: [%.8f; %.8f; %.8f]",xyzBernCordOut[0],xyzBernCordOut[1],xyzBernCordOut[2]);  
         System.out.println(sf);
 
-        // Write output into object atributes
+        // Write output into object attributes
         lla_Bern_coordinates.xyzWrite(xyzBernCordOut[0], xyzBernCordOut[1], xyzBernCordOut[2]);
 
-        // Bern ecef coordinates, object atributes
-        System.out.println("Bern ecef coordinates, object atributes:");
-        sf=String.format("x[m]: %.8f",lla_Bern_coordinates.atri_x);  
-        System.out.println(sf);
-        sf=String.format("y[m]: %.8f",lla_Bern_coordinates.atri_y);  
-        System.out.println(sf);
-        sf=String.format("z[m]: %.8f\n",lla_Bern_coordinates.atri_z); 
+        // Bern ecef coordinates, object attributes
+        System.out.println("Bern ecef coordinates, object attributes:");
+        sf=String.format("xyz[m]: [%.8f; %.8f; %.8f]",lla_Bern_coordinates.atri_x, lla_Bern_coordinates.atri_y, lla_Bern_coordinates.atri_z);  
         System.out.println(sf);
 
         // Create xyz_Bern_coordinates coordinate system object
@@ -98,11 +110,7 @@ public class coordinate_systems_java_example {
 
         // Print Input Bern ecef coordinates [m]
         System.out.println("Input Bern ecef coordinates [m]:");
-        sf=String.format("x[m]: %.8f",xyzBernCord[0]);  
-        System.out.println(sf);
-        sf=String.format("y[m]: %.8f",xyzBernCord[1]);  
-        System.out.println(sf);
-        sf=String.format("z[m]: %.8f\n",xyzBernCord[2]); 
+        sf=String.format("xyz[m]: [%.8f; %.8f; %.8f]",xyzBernCord[0],xyzBernCord[1],xyzBernCord[2]);  
         System.out.println(sf);
 
         // Compute Bern geodetic WGS84 coordinates from ecef
@@ -111,14 +119,10 @@ public class coordinate_systems_java_example {
 
         // Print Bern ecef coordinates
         System.out.println("Bern geodetic (WGS84) coordinates:");
-        sf=String.format("Latitude[°]: %.8f",llaBernCordOut[0]);  
-        System.out.println(sf);
-        sf=String.format("Longitude[°]: %.8f",llaBernCordOut[1]);  
-        System.out.println(sf);
-        sf=String.format("Altitude[m]: %.8f\n",llaBernCordOut[2]); 
+        sf=String.format("WGS84[°; °; m]: [%.8f; %.8f; %.8f]",llaBernCordOut[0],llaBernCordOut[1],llaBernCordOut[2]);  
         System.out.println(sf);
 
-        // Write output into object atributes
+        // Write output into object attributes
         xyz_Bern_coordinates.llaWrite(llaBernCordOut[0], llaBernCordOut[1], llaBernCordOut[2]);
 
         // Create xyz_Bern_coordinates coordinate system object
@@ -130,14 +134,10 @@ public class coordinate_systems_java_example {
 
         // Print Bern station ecef coordinates
         System.out.println("Bern station ecef coordinates:");
-        sf=String.format("x[m]: %.8f",xyzStationBernCordOut[0]);  
-        System.out.println(sf);
-        sf=String.format("y[m]: %.8f",xyzStationBernCordOut[1]);  
-        System.out.println(sf);
-        sf=String.format("z[m]: %.8f\n",xyzStationBernCordOut[2]); 
+        sf=String.format("xyz[m]: [%.8f; %.8f; %.8f]",xyzStationBernCordOut[0],xyzStationBernCordOut[1],xyzStationBernCordOut[2]);  
         System.out.println(sf);
 
-        // Write output into object atributes
+        // Write output into object attributes
         enu_Bern_coordinates.xyzWrite(xyzStationBernCordOut[0], xyzStationBernCordOut[1], xyzStationBernCordOut[2]);
 
         // Compute Bern station enu coordinates from ecef, ecef reference
@@ -146,12 +146,8 @@ public class coordinate_systems_java_example {
 
         // Print Bern station enu coordinates
         System.out.println("Bern station enu coordinates, ecef reference:");
-        sf=String.format("e[m]: %.8f",enuStationBernCordOut[0]);  
-        System.out.println(sf);
-        sf=String.format("n[m]: %.8f",enuStationBernCordOut[1]);  
-        System.out.println(sf);
-        sf=String.format("u[m]: %.8f\n",enuStationBernCordOut[2]); 
-        System.out.println(sf);
+        sf=String.format("enu[m]: [%.8f; %.8f; %.8f]",enuStationBernCordOut[0],enuStationBernCordOut[1],enuStationBernCordOut[2]);
+        System.out.println(sf);  
 
         // Compute Bern station ecef coordinates from enu, lla reference
         System.out.println("Compute Bern station ecef coordinates from enu, lla reference...\n");
@@ -159,14 +155,10 @@ public class coordinate_systems_java_example {
 
         // Print Bern station ecef coordinates
         System.out.println("Bern station ecef coordinates:");
-        sf=String.format("x[m]: %.8f",xyzStationBernCordOut[0]);  
-        System.out.println(sf);
-        sf=String.format("y[m]: %.8f",xyzStationBernCordOut[1]);  
-        System.out.println(sf);
-        sf=String.format("z[m]: %.8f\n",xyzStationBernCordOut[2]); 
-        System.out.println(sf);
+        sf=String.format("xyz[m]: [%.8f; %.8f; %.8f]",xyzStationBernCordOut[0],xyzStationBernCordOut[1],xyzStationBernCordOut[2]);
+        System.out.println(sf); 
 
-        // Write output into object atributes
+        // Write output into object attributes
         enu_Bern_coordinates.xyzWrite(xyzStationBernCordOut[0], xyzStationBernCordOut[1], xyzStationBernCordOut[2]);
 
         // Compute Bern station enu coordinates from ecef, lla reference
@@ -175,12 +167,31 @@ public class coordinate_systems_java_example {
 
         // Print Bern station enu coordinates
         System.out.println("Bern station enu coordinates, lla reference:");
-        sf=String.format("e[m]: %.8f",enuStationBernCordOut[0]);  
+        sf=String.format("enu[m]: [%.8f; %.8f; %.8f]",enuStationBernCordOut[0],enuStationBernCordOut[1],enuStationBernCordOut[2]);
+        System.out.println(sf); 
+
+        // -  -
+
+        // - EXAMPLE 2 -
+        // Compute the coordinates in body reference frame from ecef
+        System.out.println("Compute the coordinates in body reference frame...\n");
+        tar_xyzb = ECEF.ecef2body(tar_xyz, xyzOb, ijkb);
+
+        // Print the coordinates in body reference frame
+        System.out.println("Coordinates in body reference frame:");
+        sf=String.format("xyzb[m]: [%.8f; %.8f; %.8f]",tar_xyzb[0],tar_xyzb[1],tar_xyzb[2]);  
         System.out.println(sf);
-        sf=String.format("n[m]: %.8f",enuStationBernCordOut[1]);  
+
+        // Roll back the coordinates. Compute the coordinates in ecef reference frame
+        System.out.println("Roll back the coordinates. Compute the coordinates in ecef reference frame...\n");
+        tar_xyz = BODY.body2ecef(tar_xyzb, xyzOb, ijkb);
+
+        // Print the coordinates in ecef reference frame
+        System.out.println("Coordinates in ecef reference frame:");
+        sf=String.format("xyz[m]: [%.8f; %.8f; %.8f]",tar_xyz[0],tar_xyz[1],tar_xyz[2]);  
         System.out.println(sf);
-        sf=String.format("u[m]: %.8f\n",enuStationBernCordOut[2]); 
-        System.out.println(sf);
+
+        // -  -
     }
     
 }

@@ -34,7 +34,7 @@ public class Ellipsoid{
     fppp = third flattening = (a-b)/(a+b)
     */
     
-    // Class atributes
+    // Class attributes
     public double a;
     public double f;
     public double b;

@@ -62,6 +62,7 @@ COORDINATE_SYSTEMS
     |
     |-coolpymap3D
     |   |
+    |   |-body.py
     |   |-ecef.py
     |   |-eci.py
     |   |-ellipsoid.py
@@ -73,6 +74,8 @@ COORDINATE_SYSTEMS
     |
     |-coolCppMap3D
     |   |
+    |   |-body.h
+    |   |-body.cpp
     |   |-ecef.h
     |   |-ecef.cpp
     |   |-ellipsoid.h
@@ -98,14 +101,23 @@ COORDINATE_SYSTEMS
     |
     |-coolJavaMap3D
     |   |
+    |   |-BODY
+    |   |   |-BODY.java
+    |   |
     |   |-ECEF
     |   |   |-ECEF.java
     |   |
-    |   |-Ellipsoid
+    |   |-ellipsoidDefinition
     |   |   |-Ellipsoid.java
+    |   |
+    |   |-ENU
+    |   |   |-ENU.java
     |   |
     |   |-LLA
     |   |   |-LLA.java
+    |   |
+    |   |-MatVec
+    |   |   |-MatVec.java
     |   |
     |   |-coordinate_systems_java_example.java
     |
@@ -115,6 +127,10 @@ COORDINATE_SYSTEMS
         |   |-coordinate_systems_example.ino
         |
         |-libraries
+            |
+            |-body
+            |   |-body.h
+            |   |-body.cpp
             |
             |-ecef
             |   |-ecef.h
@@ -129,8 +145,12 @@ COORDINATE_SYSTEMS
             |   |-enu.cpp
             |
             |-lla
-                |-lla.h
-                |-lla.cpp
+            |   |-lla.h
+            |   |-lla.cpp
+            |
+            |-multiplyMatVec
+                |-multiplyMatVec.h
+                |-multiplyMatVec.cpp
 
 ```
 ## **2.1 files inside COORDINATE_SYSTEMS**
@@ -153,7 +173,7 @@ COORDINATE_SYSTEMS
 |
 |-documents
     |
-    |-1_coordinate_systems_informati
+    |-1_coordinate_systems_information.md
     |-2_script_files_folders.md
     |-3_documents_of_interest.md
     |-4_links_to_web_of_interest.md
@@ -203,23 +223,6 @@ Now empty.
 ## **2.4 src/coolpymap3D**
 Inside this folder you will find the modules used to do reference frames conversions. Python code.
 
-```
-COORDINATE_SYSTEMS
-|
-|- src
-    |
-    |-coolPyMap3D
-        |
-        |-ecef.py
-        |-eci.py
-        |-ellipsoid.py
-        |-enu.py
-        |-lla.py
-        |-sidereal.py
-        |-timeconv.py
-        |-utils.py
-```
-
 ### **2.4.1 ecef.py**
 This module was created to transforms from ECEF (earth-centered, earth-fixed) frame to others.
 
@@ -247,96 +250,11 @@ Some utility functions. All assume radians.
 ## **2.5 src/coolCppMap3D**
 Inside this folder you will find the modules used to do reference frames conversions. C++ code.
 
-```
-COORDINATE_SYSTEMS
-|
-|- src
-    |
-    |-coolCppMap3D
-        |
-        |-ecef.h
-        |-ecef.cpp
-        |-ellipsoid.h
-        |-ellipsoid.cpp
-        |-enu.h
-        |-enu.cpp
-        |-lla.h
-        |-lla.cpp
-        |
-        |-coordinate_systems_cpp_example.cpp
-```
-
 ## **2.6 src/coolOctaveMap3D**
 Inside this folder you will find the modules used to do reference frames conversions. Octave code.
-
-```
-COORDINATE_SYSTEMS
-|
-|- src
-    |
-    |-coolOctaveMap3D
-        |
-        |-ecef2enu_ecefRef.m
-        |-ecef2enu_llaRef.m
-        |-ecef2lla.m
-        |-ellipsoidModel.m
-        |-enu2ecef_ecefRef.m
-        |-enu2ecef_llaRef.m
-        |-lla2ecef.m
-        |
-        |-coordinate_systems_octave_example.m
-```
 
 ## **2.7 src/coolJavaMap3D**
 Inside this folder you will find the modules used to do reference frames conversions. Java code.
 
-```
-COORDINATE_SYSTEMS
-|
-|- src
-    |
-    |-coolJavaMap3D
-        |
-        |-ECEF
-        |   |-ECEF.java
-        |
-        |-Ellipsoid
-        |   |-Ellipsoid.java
-        |
-        |-LLA
-        |   |-LLA.java
-        |
-        |-coordinate_systems_java_example.java
-```
-
 ## **2.8 src/coolArduinoMap3D**
 Inside this folder you will find the modules used to do reference frames conversions. Arduino code.
-
-```
-COORDINATE_SYSTEMS
-|
-|- src
-    |
-    |-coolArduinoMap3D
-        |
-        |-coordinate_systems_example
-        |   |-coordinate_systems_example.ino
-        |
-        |-libraries
-            |
-            |-ecef
-            |   |-ecef.h
-            |   |-ecef.cpp
-            |
-            |-ellipsoid
-            |   |-ellipsoid.h
-            |   |-ellipsoid.cpp
-            |
-            |-enu
-            |   |-enu.h
-            |   |-enu.cpp
-            |
-            |-lla
-                |-lla.h
-                |-lla.cpp
-```

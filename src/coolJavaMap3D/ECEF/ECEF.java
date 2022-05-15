@@ -15,10 +15,11 @@ package ECEF;
 // Import used packages
 import ellipsoidDefinition.Ellipsoid;
 import LLA.LLA;
+import MatVec.MatVec;
 
 public class ECEF {
 
-    // --- Class atributes ---
+    // --- Class attributes ---
     // Input x coordinate
     public double atri_x;
     // Input y coordinate
@@ -52,7 +53,7 @@ public class ECEF {
     // Class constructor
     public ECEF(double x_coordinate, double y_coordinate, double z_coordinate, Ellipsoid ellipsoid, boolean degrees){
 
-        // Define x , y, z object atributes coordinates
+        // Define x , y, z object attributes coordinates
         atri_x = x_coordinate;
         atri_y = y_coordinate;
         atri_z = z_coordinate;
@@ -264,13 +265,78 @@ public class ECEF {
         return enu;
     }
 
+    // Define ecef2body method
+    static public double[] ecef2body(double[] xyz, double[] xyzOb, double[][] ijkb){
+        /*
+        This function was created to change between ecef
+	    to Body coordinate system.
+
+	    Parameters
+	    ----------
+	    x = xyz[0]
+        	target x ecef coordinate (meters)
+	    y = xyz[1]
+        	target y ecef coordinate (meters)
+	    z = xyz[1]
+        	target z ecef coordinate (meters)
+
+	    xOb = xyzOb[0]
+        	x body coordinate origin (ecef reference, meters)
+	    yOb = xyzOb[1]
+        	y body coordinate origin (ecef reference, meters)
+	    zOb = xyzOb[2]
+        	z body coordinate origin (ecef reference, meters)
+
+	    ib = ijkb[:][0]
+        	x body axis unitary vector (ecef reference, meters)
+	    jb = ijkb[:][1]
+        	y body axis unitary vector (ecef reference, meters)
+	    kb = ijkb[:][2]
+        	z body axis unitary vector (ecef reference, meters)
+
+	    Returns
+	    -------
+	    xb = xyzb[0]
+        	target x Body coordinate (meters)
+	    yb = xyzb[1]
+        	target y Body coordinate (meters)
+	    zb = xyzb[2]
+        	target z Body coordinate (meters)
+
+	    Ob_P = inverse(R[θ]) * (Oecef_P-Oecef_Ob) = Rinv * diff_OeP_OeOb = Rinv * (xyz - xyzOb)
+        */
+
+        // Define output method parameters
+        double[] xyzb = new double[]{0.0, 0.0, 0.0};
+
+        // Define inverse(R[θ])
+        double[][] Rinv = {{ijkb[0][0], ijkb[1][0], ijkb[2][0]},
+						   {ijkb[0][1], ijkb[1][1], ijkb[2][1]},
+						   {ijkb[0][2], ijkb[1][2], ijkb[2][2]}};
+
+        // Initialize intermediate variables
+        double[] diff_OeP_OeOb = new double[]{0.0, 0.0, 0.0};
+
+        //  Get the difference between OeP (P coordinates in ecef reference) and
+	    // OeOb (vector from ecef origin to body origin).
+	    diff_OeP_OeOb[0] = xyz[0] - xyzOb[0];
+	    diff_OeP_OeOb[1] = xyz[1] - xyzOb[1];
+	    diff_OeP_OeOb[2] = xyz[2] - xyzOb[2];
+
+        // Get the final coordinates in body reference
+	    xyzb = MatVec.multiplyMatVec(Rinv, diff_OeP_OeOb);
+
+        // Return output coordinates
+        return xyzb;
+    }
+
     // Define llaWrite method
     public void llaWrite(double lat_coordinate, double lon_coordinate, double alt_coordinate){
         /*
-        Method to write output coordinates into the object atributes
+        Method to write output coordinates into the object attributes
         */
 
-        // Define x , y, z object atributes coordinates
+        // Define x , y, z object attributes coordinates
         atri_lat = lat_coordinate;
         atri_lon = lon_coordinate;
         atri_alt = alt_coordinate;
@@ -279,10 +345,10 @@ public class ECEF {
     // Define enuWrite method
     public void enuWrite(double e_coordinate, double n_coordinate, double u_coordinate){
         /*
-        Method to write output coordinates into the object atributes
+        Method to write output coordinates into the object attributes
         */
 
-        // Define x , y, z object atributes coordinates
+        // Define x , y, z object attributes coordinates
         atri_e = e_coordinate;
         atri_n = n_coordinate;
         atri_u = u_coordinate;
