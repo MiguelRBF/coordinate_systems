@@ -26,11 +26,13 @@ The Rosetta Stone is a stele composed of granodiorite inscribed with three versi
 
 The following index show the information/scripts inside the repository:
 
-1. [**Coordinate systems - Information**](./documents/1_coordinate_systems_information.md): Some information about coordinate systems.
-2. [**Script files/folders**](./documents/2_script_files_folders.md): Description of the scripts inside the repository.
-3. [**Documents of interest**](./documents/3_documents_of_interest.md): Some documents of interest.
-4. [**Webs of interest**](./documents/4_link_to_webs_of_interest.md): Link to 4_links_to_webs_of_interest. Some links to webs of interest.
-5. [**List of references**](./documents/5_list_references.md): List with all the references.
+1. [**Coordinate systems - Information**](./documents/1_coordinate_systems_information.md): Link to 1_coordinate_systems_information. Description of the most commonly used coordinate systems.
+2. [**Coordinate systems - Transformation**](./documents/2_coordinate_systems_transformation.md): Link to 2_coordinate_systems_transformation. Description of the most commonly used transformation between coordinate systems.
+3. [**Script files/folders**](./documents/3_script_files_folders.md): Link to 2_script_files_folders. Description of the scripts inside the repository.
+4. [**Documents of interest**](./documents/4_documents_of_interest.md): Link to 3_documents_of_interest. Some documents of interest.
+5. [**Webs of interest**](./documents/5_link_to_webs_of_interest.md): Link to 4_link_to_webs_of_interest. Some links to webs of interest.
+6. [**List of references**](./documents/6_list_references.md): List with all the references.
+<br/><br/>
 
 # Educational purpose
 
